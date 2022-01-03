@@ -1,5 +1,4 @@
 import { Html, Head, Main, NextScript } from "next/document";
-import Navbar from "../components/Layout/Navbar/Navbar";
 
 export default function Document(props: any) {
   console.log(props);
@@ -18,9 +17,6 @@ export default function Document(props: any) {
       </Head>
 
       <body>
-        <header>
-          <Navbar />
-        </header>
         <Main />
         <NextScript />
       </body>
