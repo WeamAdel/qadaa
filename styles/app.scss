@@ -2,6 +2,19 @@
 @import "./settings/colors";
 @import "./settings/fonts";
 @import "./settings/themes";
+@import "./settings/box-sizing";
+
+//Mixins
+@import "./mixins/clamp.scss";
+
+//Utils
+@import "./utils/classes";
 
 //Elements
+@import "./elements/html";
 @import "./elements/body";
+@import "./elements/a";
+
+//Components
+@import "./components/navbar";
+@import "./components/page";

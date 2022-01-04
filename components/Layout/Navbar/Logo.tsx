@@ -5,7 +5,11 @@ import { LangContext } from "../../Lang/Lang";
 function Logo() {
   const lang = useContext(LangContext);
 
-  return <Link href="/">{lang.siteName}</Link>;
+  return (
+    <div className="navbar__logo">
+      <Link href="/">{lang.siteName}</Link>
+    </div>
+  );
 }
 
 export default Logo;

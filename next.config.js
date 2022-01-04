@@ -3,12 +3,12 @@
 module.exports = {
   reactStrictMode: true,
   i18n: {
-    locales: ["en-US", "ar"],
-    defaultLocale: "en-US",
+    locales: ["en", "ar"],
+    defaultLocale: "en",
     domains: [
       {
         domain: process.env.DOMAIN,
-        defaultLocale: "en-US",
+        defaultLocale: "en",
       },
       {
         domain: process.env.DOMAIN + "/ar",
@@ -16,5 +16,6 @@ module.exports = {
         http: true,
       },
     ],
+    trailingSlash: true,
   },
 };
