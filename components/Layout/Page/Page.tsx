@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Navbar from "../Navbar/Navbar";
-import BackgroundPattern from "./BackgroundPattern";
 
 function Page(props: any) {
   return (
@@ -13,7 +12,6 @@ function Page(props: any) {
           <Navbar />
           <main>{props.children}</main>
         </div>
-        <BackgroundPattern />
       </div>
     </div>
   );

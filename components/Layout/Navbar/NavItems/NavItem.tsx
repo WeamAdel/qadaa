@@ -1,14 +1,24 @@
-import Link from "next/link";
-import NavItem from "../../../../types/NavItem";
-import Latern from "./Latern";
+import LinkItem from "./Linktem";
+import ButtonItem from "./ButtonItem";
 
-function NavItem({ title, url, withLatern }: NavItem) {
-  const laternJSX = withLatern ? <Latern /> : null;
+import { Item, NavItem } from "../../../../types/NavItem";
+
+const itemComponents = {
+  [Item.link]: LinkItem,
+  [Item.button]: ButtonItem,
+};
+
+function NavItem({ type, classes, ...props }: { type: Item; classes?: string; props: any }) {
+  if (!itemComponents[type]) {
+    throw Error("Invalid navitem type " + type);
+  }
+
+  const ItemComponent = itemComponents[type];
 
   return (
-    <li className="navbar__nav-item">
-      {laternJSX}
-      <Link href={url}>{title}</Link>
+    <li className={`navbar__nav-item ${classes}`}>
+      {/*// @ts-ignore */}
+      <ItemComponent {...props} />
     </li>
   );
 }
