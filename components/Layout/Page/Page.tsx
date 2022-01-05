@@ -1,19 +1,25 @@
 import Head from "next/head";
 import Navbar from "../Navbar/Navbar";
 
-function Page(props: any) {
+interface PageInterface {
+  title: string;
+  alias?: string;
+  children: any;
+}
+
+function Page({ title, alias = "", children }: PageInterface) {
   return (
-    <div>
+    <>
       <Head>
-        <title>{props.pageTitle}</title>
+        <title>{title}</title>
       </Head>
-      <div className="page">
+      <div className={`page ${alias}`}>
         <div className="page__content">
           <Navbar />
-          <main>{props.children}</main>
+          <main>{children}</main>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -9,7 +9,7 @@ const About: NextPage = () => {
   const lang = useContext(LangContext);
 
   return (
-    <Page pageTitle={lang.about}>
+    <Page title={lang.about}>
       <Heading />
     </Page>
   );

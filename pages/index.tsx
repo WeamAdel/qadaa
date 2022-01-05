@@ -9,7 +9,7 @@ const Home: NextPage = () => {
   const lang = useContext(LangContext);
 
   return (
-    <Page pageTitle={lang.homePageTitle}>
+    <Page title={lang.homePageTitle} alias="home">
       <Heading />
     </Page>
   );

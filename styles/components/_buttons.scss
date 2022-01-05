@@ -1,0 +1,45 @@
+:root {
+  --btn-padding: max(min(0.8vw, 13px), 6px) max(min(1.5vw, 24px), 16px);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-overflow: break-word;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: var(--fw-med);
+  @include clamp("min-width", 160, 120, 180);
+  transition: opacity 0.25s ease-in-out;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.button--icon {
+  .icon {
+    width: 20px;
+    margin-right: 6px;
+    margin-left: -4px;
+  }
+}
+
+.button--primary {
+  background-color: var(--primary-fg);
+  color: var(--primary-bg);
+}
+
+.button--link {
+  a {
+    @extend .button;
+    padding: var(--btn-padding);
+  }
+}
+
+.button--link--primary a {
+  @extend .button--primary;
+}
