@@ -1,11 +1,22 @@
 .navbar {
   display: flex;
-  align-items: center;
+  // align-items: center;
   text-transform: capitalize;
+  padding-left: var(--container-px);
 }
 
 .navbar__logo {
   margin-right: auto;
+  font-weight: var(--fw-med);
+  @include clamp("margin-top", 28, 20, 32);
+
+  a {
+    color: var(--primary-fg);
+
+    &:visited {
+      color: var(--primary-fg);
+    }
+  }
 }
 
 .navbar__links-list {
