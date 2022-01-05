@@ -1,12 +1,17 @@
 import type { AppProps } from "next/app";
 import "../styles/app.scss";
-import Lang from "../components/Lang/Lang";
+import LanguageProvider from "../Providers/Language";
+
+import Theme from "../types/Theme";
+import ThemeProvider from "../Providers/ThemeProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Lang>
-      <Component {...pageProps} />
-    </Lang>
+    <ThemeProvider theme={Theme.light}>
+      <LanguageProvider>
+        <Component {...pageProps} />
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }
 

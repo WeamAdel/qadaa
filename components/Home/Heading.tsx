@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { LangContext } from "../Lang/Lang";
+import { LangContext } from "../../Providers/Language";
 
 function Heading() {
   const lang = useContext(LangContext);

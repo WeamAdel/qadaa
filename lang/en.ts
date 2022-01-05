@@ -1,13 +1,16 @@
 const EN_TRANSLATION = {
-  siteName: "qadaa'",
   about: "about",
+  aboutPageTitle: "Qadaa' | About",
   donate: "donate",
-  secondLang: "arabic",
+  generateSchedule: "generate schedule",
   homeDescription:
     "Little steps make the largest difference, the difference that will change your real life",
-  generateSchedule: "generate schedule",
   homePageTitle: "Qadaa' | Home",
+  secondLang: "arabic",
   schedulePageTitle: "Qadaa' | Generate Schedule",
+  siteName: "qadaa'",
+  changeToDarkTheme: "change to dark theme",
+  changeToLightTheme: "change to light theme",
 };
 
 export default EN_TRANSLATION;

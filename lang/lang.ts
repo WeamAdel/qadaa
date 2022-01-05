@@ -1,12 +1,7 @@
 import InvalidLanguageType from "../errors/InvalidLanguageType";
-
+import Language from "../types/Language";
 import AR_TRANSLATION from "./ar";
 import EN_TRANSLATION from "./en";
-
-export enum Languages {
-  en = "en",
-  ar = "ar",
-}
 
 export const langTranslations = {
   en: EN_TRANSLATION,
@@ -18,7 +13,7 @@ export const langTranslations = {
  *
  * @lang Site language.
  */
-export function getLangTrans(lang: Languages = Languages.en) {
+export function getLangTrans(lang: Language = Language.en) {
   if (!(lang in langTranslations)) throw new InvalidLanguageType(lang);
 
   return langTranslations[lang];
@@ -29,6 +24,6 @@ export function getLangTrans(lang: Languages = Languages.en) {
  *
  * @param lang Site language
  */
-export function isRTLLang(lang: Languages): Boolean {
-  return lang && lang === Languages.ar;
+export function isRTLLang(lang: Language): Boolean {
+  return lang && lang === Language.ar;
 }

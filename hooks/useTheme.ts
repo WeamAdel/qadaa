@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
 import Theme from "../types/Theme";
 
-function useTheme(init: Theme = Theme.light) {
+function useTheme(init: Theme = Theme.light): { theme: Theme; revertTheme: Function } {
   const [theme, setTheme] = useState(init);
 
   useEffect(() => {
     updateTheme(theme);
   }, [theme]);
 
-  return { theme, setTheme };
+  function revertTheme() {
+    setTheme((theme) => {
+      return theme === Theme.dark ? Theme.light : Theme.dark;
+    });
+  }
+
+  return { theme, revertTheme };
 }
 
 /**
