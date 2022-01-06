@@ -4,19 +4,32 @@ import Logo from "./Logo";
 import { isRTLLang } from "../../../lang/lang";
 import { useRouter } from "next/router";
 import NavItems from "./NavItems/NavItems";
+import OffCanvas from "./OffCanvas";
+import ToggleButton from "./ToggleButton";
+import { useState } from "react";
 
 function Navbar() {
   const { locale } = useRouter();
+  const [isExpanded, setIspanded] = useState(false);
 
   //@ts-ignore
   const chevronIcon = isRTLLang(locale) ? <ChevronLeftIcon /> : <ChevronRightIcon />;
 
+  function toggleMenu() {
+    setIspanded((isExpanded) => {
+      return !isExpanded;
+    });
+  }
+
   return (
     <header>
-      <nav className="navbar">
+      <div className="navbar">
         <Logo />
-        <NavItems />
-      </nav>
+        <ToggleButton toggleMenu={toggleMenu} />
+        <OffCanvas isExpanded={isExpanded}>
+          <NavItems />
+        </OffCanvas>
+      </div>
     </header>
   );
 }

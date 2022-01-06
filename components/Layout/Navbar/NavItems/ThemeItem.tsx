@@ -11,11 +11,11 @@ function ButtonItem() {
 
   const btnVariants = {
     [Theme.light]: {
-      icon: LightModeIcon,
+      icon: DarkModeIcon,
       title: changeToDarkTheme,
     },
     [Theme.dark]: {
-      icon: DarkModeIcon,
+      icon: LightModeIcon,
       title: changeToLightTheme,
     },
   };
