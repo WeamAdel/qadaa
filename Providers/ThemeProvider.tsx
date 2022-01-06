@@ -8,10 +8,12 @@ function Lang({ children }: { children: any }) {
 
   useEffect(() => {
     const savedTheme = getCachedTheme();
+    const preferedTheme = getPreferredTheme();
+    const theme = savedTheme || preferedTheme;
 
-    if (savedTheme && savedTheme in Theme) {
+    if (theme && theme in Theme) {
       //@ts-ignore
-      setTheme(savedTheme);
+      setTheme(theme);
     }
   }, []);
 
@@ -34,6 +36,14 @@ function Lang({ children }: { children: any }) {
  */
 function getCachedTheme(): string | null {
   return localStorage.getItem("theme");
+}
+
+function getPreferredTheme(): Theme | null {
+  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    return Theme.dark;
+  }
+
+  return null;
 }
 
 function saveTheme(theme: Theme) {

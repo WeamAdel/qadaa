@@ -8,7 +8,9 @@ function Logo() {
 
   return (
     <div className="navbar__logo">
-      <Link href={Route.home}>{lang.siteName}</Link>
+      <Link href={Route.home}>
+        <a data-testid="nav-logo">{lang.siteName}</a>
+      </Link>
     </div>
   );
 }

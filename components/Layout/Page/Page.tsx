@@ -7,7 +7,7 @@ interface PageInterface {
   children: any;
 }
 
-function Page({ title, alias = "", children }: PageInterface) {
+function Page({ title, alias, children }: PageInterface) {
   return (
     <>
       <Head>

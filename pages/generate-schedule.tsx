@@ -1,16 +1,16 @@
 import type { NextPage } from "next";
-import Head from "next/head";
+import { useContext } from "react";
+
+import Page from "../components/Layout/Page/Page";
+import { LangContext } from "../Providers/Language";
 
 const GenerateSchedule: NextPage = () => {
+  const { schedulePageTitle } = useContext(LangContext);
+
   return (
-    <div>
-      <Head>
-        <title>Qadaa | Generate Schedule </title>
-      </Head>
-      <main>
-        <h1>Generate</h1>
-      </main>
-    </div>
+    <Page title={schedulePageTitle} alias="generate-schedule">
+      <h1 data-testid="">Generate Schedule</h1>
+    </Page>
   );
 };
 

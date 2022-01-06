@@ -10,7 +10,7 @@ function NavItems() {
 
   return (
     <ul className="navbar__links-list">
-      <LinkItem title={lang.about} withLatern={true} url={Route.about} />
+      <LinkItem title={lang.about} withLatern={true} url={Route.about} id="nav-about" />
       <LanguageItem />
       <ThemeItem />
       <LinkItem
@@ -18,6 +18,7 @@ function NavItems() {
         withLatern={false}
         url={Route.donate}
         classes="navbar__nav-item--cta"
+        id="nav-donate"
       />
     </ul>
   );

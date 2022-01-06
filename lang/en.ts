@@ -2,6 +2,7 @@ const EN_TRANSLATION = {
   about: "about",
   aboutPageTitle: "Qadaa' | About",
   donate: "donate",
+  donatePageTitle: "Qadaa' | Donate",
   generateSchedule: "generate schedule",
   homeDescription:
     "Little steps make the largest difference, the difference that will change your real life",

@@ -7,9 +7,10 @@ interface LinkItemInterface {
   withLatern: boolean;
   url: string;
   classes?: string;
+  id?: string;
 }
 
-function LinkItem({ title, withLatern, url, classes }: LinkItemInterface) {
+function LinkItem({ title, withLatern, url, classes, id }: LinkItemInterface) {
   const laternJSX = withLatern ? <Latern /> : null;
   const { locale } = useRouter();
 
@@ -17,7 +18,7 @@ function LinkItem({ title, withLatern, url, classes }: LinkItemInterface) {
     <li className={`navbar__nav-item ${classes}`}>
       {laternJSX}
       <Link href={url} locale={locale}>
-        {title}
+        <a data-testid={id}>{title}</a>
       </Link>
     </li>
   );

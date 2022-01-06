@@ -1,7 +1,8 @@
 const AR_TRANSLATION = {
   about: "عنّا",
   aboutPageTitle: "قضاء | عنّا",
-  donate: "تبرع",
+  donate: "تبرّع",
+  donatePageTitle: "قضاء | تبرّع",
   generateSchedule: "قم بإعداد جدول",
   homeDescription: "الخطوات الصغيرة هي ما تحدث فرقا, الفرق الذي سيغير حياتك الحقيقية.",
   homePageTitle: "قضاء | الرئيسية",
