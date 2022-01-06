@@ -1,7 +1,22 @@
-function OffCanvas({ children, isExpanded }: { children: any; isExpanded: boolean }) {
+import { ChevronLeft } from "@mui/icons-material";
+import { MouseEventHandler } from "react";
+
+interface OffCanvasInterface {
+  children: any;
+  isExpanded: boolean;
+  closeMenu: MouseEventHandler;
+}
+
+function OffCanvas({ children, isExpanded, closeMenu }: OffCanvasInterface) {
   return (
     <div className="navbar__off-canvas" aria-expanded={isExpanded}>
-      {children}
+      <div className="navbar__off-canvas-inner">
+        <button className="navbar__close-btn" onClick={closeMenu} title="Close navbar menu">
+          <ChevronLeft />
+        </button>
+        {/*//@ts-ignore */}
+        {children}
+      </div>
     </div>
   );
 }

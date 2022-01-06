@@ -10,7 +10,7 @@ const About: NextPage = () => {
 
   return (
     <Page title={lang.about}>
-      <Heading />
+      <h1>About</h1>
     </Page>
   );
 };

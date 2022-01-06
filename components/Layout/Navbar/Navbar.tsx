@@ -21,12 +21,18 @@ function Navbar() {
     });
   }
 
+  function closeMenu() {
+    console.log("test");
+
+    setIspanded(false);
+  }
+
   return (
     <header>
       <div className="navbar">
         <Logo />
         <ToggleButton toggleMenu={toggleMenu} />
-        <OffCanvas isExpanded={isExpanded}>
+        <OffCanvas isExpanded={isExpanded} closeMenu={closeMenu}>
           <NavItems />
         </OffCanvas>
       </div>

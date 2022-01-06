@@ -7,4 +7,9 @@ body {
   background-image: url(/images/pattern.svg);
   background-repeat: no-repeat;
   background-size: cover;
+
+  ::selection {
+    color: var(--primary-bg);
+    background-color: var(--primary-fg);
+  }
 }
