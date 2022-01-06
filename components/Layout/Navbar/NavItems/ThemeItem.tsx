@@ -4,9 +4,10 @@ import { LangContext } from "../../../../Providers/Language";
 import Theme from "../../../../types/Theme";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import { ThemeContext } from "../../../../Providers/ThemeProvider";
 
 function ButtonItem() {
-  const { theme = Theme.light, revertTheme } = useTheme();
+  const { theme, changeTheme } = useContext(ThemeContext);
   const { changeToDarkTheme, changeToLightTheme } = useContext(LangContext);
 
   const btnVariants = {
@@ -24,7 +25,7 @@ function ButtonItem() {
   return (
     <li className={`navbar__nav-item`}>
       {/*//@ts-ignore*/}
-      <button onClick={revertTheme} className="navbar__btn-item" title={btnVariants[theme].title}>
+      <button onClick={changeTheme} className="navbar__btn-item" title={btnVariants[theme].title}>
         <Icon />
       </button>
     </li>

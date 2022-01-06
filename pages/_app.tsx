@@ -7,7 +7,7 @@ import ThemeProvider from "../Providers/ThemeProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={Theme.light}>
+    <ThemeProvider>
       <LanguageProvider>
         <Component {...pageProps} />
       </LanguageProvider>

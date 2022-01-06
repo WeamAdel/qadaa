@@ -6,14 +6,14 @@ import Language from "../../../../types/Language";
 import Latern from "./Latern";
 
 function LinkItem() {
-  const { locale, pathname } = useRouter();
+  const { locale = Language.en, pathname } = useRouter();
   const { secondLang } = useContext(LangContext);
 
   return (
-    <li className={`navbar__nav-item`}>
+    <li className="navbar__nav-item navbar__language-item" data-locale={locale}>
       <Latern />
       <Link href={pathname} locale={locale == Language.en ? Language.ar : Language.en}>
-        {secondLang}
+        <a>{secondLang}</a>
       </Link>
     </li>
   );

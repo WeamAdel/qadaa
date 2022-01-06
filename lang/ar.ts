@@ -5,7 +5,7 @@ const AR_TRANSLATION = {
   generateSchedule: "قم بإعداد جدول",
   homeDescription: "الخطوات الصغيرة هي ما تحدث فرقا, الفرق الذي سيغير حياتك الحقيقية.",
   homePageTitle: "قضاء | الرئيسية",
-  secondLang: "الإنجليزية",
+  secondLang: "English",
   schedulePageTitle: "قضاء | إنشاء جدول",
   siteName: "قضاء",
   changeToDarkTheme: "قم بتفعيل الوضع الليلي",

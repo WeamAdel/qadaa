@@ -6,7 +6,7 @@ const EN_TRANSLATION = {
   homeDescription:
     "Little steps make the largest difference, the difference that will change your real life",
   homePageTitle: "Qadaa' | Home",
-  secondLang: "arabic",
+  secondLang: "العربية",
   schedulePageTitle: "Qadaa' | Generate Schedule",
   siteName: "qadaa'",
   changeToDarkTheme: "change to dark theme",
