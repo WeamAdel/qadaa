@@ -13,7 +13,7 @@ function LinkItem() {
     <li className="navbar__nav-item navbar__language-item" data-locale={locale}>
       <Latern />
       <Link href={pathname} locale={locale == Language.en ? Language.ar : Language.en}>
-        <a>{secondLang}</a>
+        <a data-testid="nav-lang">{secondLang}</a>
       </Link>
     </li>
   );

@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import useTheme from "../../../../hooks/useTheme";
 import { LangContext } from "../../../../Providers/Language";
 import Theme from "../../../../types/Theme";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
