@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Language from "../../../types/Language";
 import Navbar from "../Navbar/Navbar";
+import BackgroundPattern from "./BackgroundPattern";
 
 interface PageInterface {
   title: string;
@@ -23,6 +24,7 @@ function Page({ title, alias, children }: PageInterface) {
         <title>{title}</title>
       </Head>
       <div className={`page ${alias}`}>
+        <BackgroundPattern />
         <div className="page__content">
           <Navbar />
           <main>{children}</main>
