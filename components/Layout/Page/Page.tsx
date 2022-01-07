@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Language from "../../../types/Language";
 import Navbar from "../Navbar/Navbar";
+import PrayerTimes from "../PrayerTimes/PrayerTimes";
 import BackgroundPattern from "./BackgroundPattern";
 
 interface PageInterface {
@@ -28,6 +29,7 @@ function Page({ title, alias, children }: PageInterface) {
         <div className="page__content">
           <Navbar />
           <main>{children}</main>
+          <PrayerTimes />
         </div>
       </div>
     </>

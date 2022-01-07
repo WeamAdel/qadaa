@@ -11,7 +11,11 @@ function OffCanvas({ children, isExpanded, closeMenu }: OffCanvasInterface) {
   return (
     <div className="navbar__off-canvas" aria-expanded={isExpanded}>
       <div className="navbar__off-canvas-inner">
-        <button className="navbar__close-btn" onClick={closeMenu} title="Close navbar menu">
+        <button
+          className="navbar__close-btn close-button"
+          onClick={closeMenu}
+          title="Close navbar menu"
+        >
           <ChevronLeft />
         </button>
         {/*//@ts-ignore */}

@@ -1,0 +1,90 @@
+.prayer-times__toggle-btn {
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  position: fixed;
+  inset-inline-start: var(--container-px);
+  bottom: var(--navbar-py);
+  cursor: pointer;
+  transition: transform 0.25s ease-in-out;
+
+  img {
+    height: auto;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.prayer-times__ribble-inner,
+.prayer-times__ribble-outer,
+.prayer-times__ribble-core {
+  border-radius: 50%;
+  padding: 10px;
+  border: 1px solid var(--grass-400);
+}
+
+.prayer-times__ribble-outer {
+  background-color: var(--grass-500);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.prayer-times__ribble-inner {
+  background-color: var(--grass-300);
+}
+
+.prayer-times__ribble-core {
+  background-color: var(--black-800);
+}
+
+.prayer-times__times {
+  background-color: var(--primary-bg);
+  width: min(90vw, 300px);
+  border-radius: 2px;
+  box-shadow: 0 0 7rem rgb(0 0 0 / 10%);
+  padding: 24px 20px;
+  position: relative;
+}
+
+.prayer-times__close-btn {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  transform: translateY(-100%);
+  font-size: 14px;
+  border-radius: 2px;
+  width: 28px;
+  height: 28px;
+
+  svg {
+    width: 20px;
+  }
+}
+
+.prayer-times__heading {
+  font-size: 18px;
+  background-color: var(--primary-fg);
+  color: var(--primary-bg);
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-weight: var(--fw-med);
+}
+
+.MuiModal-root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: min(32px, 6vh) 20px;
+}
+
+.MuiBackdrop-root {
+  //   background-color: var(--primary-bg-trans);
+}

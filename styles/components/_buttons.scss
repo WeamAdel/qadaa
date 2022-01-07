@@ -43,3 +43,21 @@
 .button--link--primary a {
   @extend .button--primary;
 }
+
+.close-button {
+  color: var(--primary-fg);
+  background-color: var(--secondary-bg);
+  border: none;
+  margin-bottom: 32px;
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
