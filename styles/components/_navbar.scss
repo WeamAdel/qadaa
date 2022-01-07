@@ -104,7 +104,7 @@
       &:hover,
       &:hover:visited {
         color: var(--primary-fg);
-        background-color: var(--black-800);
+        background-color: var(--black-900);
       }
     }
   }
@@ -204,6 +204,7 @@
 }
 
 .navbar__close-btn {
+  color: var(--primary-fg);
   background-color: var(--secondary-bg);
   border: none;
   margin-bottom: 32px;
