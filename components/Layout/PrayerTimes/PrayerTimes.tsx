@@ -1,4 +1,5 @@
 import { Modal } from "@mui/material";
+import { Box } from "@mui/system";
 import { useState } from "react";
 import Times from "./Times";
 import ToggleButton from "./ToggleButton";
@@ -25,7 +26,9 @@ function PrayerTimes() {
         aria-labelledby={modalTitleId}
         aria-describedby={modalDescId}
       >
-        <Times modalTitleId={modalTitleId} modalDescId={modalDescId} closeModal={closeModal} />
+        <Box>
+          <Times modalTitleId={modalTitleId} modalDescId={modalDescId} closeModal={closeModal} />
+        </Box>
       </Modal>
     </aside>
   );
