@@ -24,7 +24,12 @@ function ButtonItem() {
   return (
     <li className={`navbar__nav-item`}>
       {/*//@ts-ignore*/}
-      <button onClick={changeTheme} className="navbar__btn-item" title={btnVariants[theme].title}>
+      <button
+        onClick={changeTheme}
+        className="navbar__btn-item"
+        title={btnVariants[theme].title}
+        data-testid="nav-theme"
+      >
         <Icon />
       </button>
     </li>

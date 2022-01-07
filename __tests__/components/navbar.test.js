@@ -1,6 +1,6 @@
 import NavItems from "../../components/Layout/Navbar/NavItems/NavItems";
 import Logo from "../../components/Layout/Navbar/Logo";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, waitFor } from "@testing-library/react";
 import mockRouter from "next-router-mock";
 import singletonRouter from "next/router";
 import { redirectsToPage } from "../utils/utils";
@@ -40,5 +40,18 @@ describe("Routing with locale change", () => {
 
     fireEvent.click(getByTestId("nav-lang"));
     expect(singletonRouter).toMatchObject({ locale: Language.en });
+  });
+});
+
+jest.spyOn(Storage.prototype, "setItem");
+
+describe.only("Theme changes", () => {
+  it("Theme button switches between light/dark modes", async () => {
+    const { getByTestId } = render(<NavItems />);
+    fireEvent.click(getByTestId("nav-theme"));
+
+    await waitFor(() => {
+      expect(localStorage.setItem).toBeCalled();
+    });
   });
 });

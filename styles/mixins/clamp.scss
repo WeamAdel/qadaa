@@ -1,7 +1,7 @@
 @mixin clamp($prop, $val, $min, $max, $important: "false") {
   @if $important == "true" {
-    #{$prop}: #{"min(max(#{$min}px, #{$val / 13.66}vw), #{$max}px) !important"};
+    #{$prop}: #{"min(max(#{$min}px, #{calc($val / 13.66)}vw), #{$max}px) !important"};
   } @else {
-    #{$prop}: #{"min(max(#{$min}px, #{$val / 13.66}vw), #{$max}px)"};
+    #{$prop}: #{"min(max(#{$min}px, #{calc($val / 13.66)}vw), #{$max}px)"};
   }
 }

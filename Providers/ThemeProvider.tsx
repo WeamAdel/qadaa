@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import Theme from "../types/Theme";
+import { getCachedTheme } from "../utils/functions";
 
 export let ThemeContext = createContext({ theme: Theme.light, changeTheme: () => {} });
 
@@ -31,13 +32,6 @@ function Lang({ children }: { children: any }) {
   return <ThemeContext.Provider value={{ theme, changeTheme }}>{children}</ThemeContext.Provider>;
 }
 
-/**
- * Gets previously chosen theme.
- */
-function getCachedTheme(): string | null {
-  return localStorage.getItem("theme");
-}
-
 function getPreferredTheme(): Theme | null {
   if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
     return Theme.dark;
@@ -47,6 +41,8 @@ function getPreferredTheme(): Theme | null {
 }
 
 function saveTheme(theme: Theme) {
+  console.log(theme);
+
   if (!(theme in Theme)) return;
   localStorage.setItem("theme", theme);
 }

@@ -6,7 +6,7 @@
 .navbar {
   display: flex;
   text-transform: capitalize;
-  padding-left: var(--container-px);
+  padding-inline-start: var(--container-px);
 
   @media (max-width: 766px) {
     align-items: center;
@@ -14,7 +14,7 @@
 }
 
 .navbar__logo {
-  margin-right: auto;
+  margin-inline-end: auto;
   font-weight: var(--fw-med);
   margin-top: var(--navbar-py);
 
@@ -112,7 +112,7 @@
 
 .navbar__latern {
   position: absolute;
-  right: 0;
+  inset-inline-end: 0;
   top: 0;
   z-index: -1;
   transform: translateX(calc(50% + 2px));
@@ -121,6 +121,12 @@
     width: 30px;
     aspect-ratio: 1/5;
     fill: var(--primary-fg);
+  }
+}
+
+[dir="rtl"] {
+  .navbar__latern {
+    transform: translateX(calc(-50% - 2px));
   }
 }
 
@@ -155,7 +161,7 @@
     padding: 24px;
     overflow: auto;
     overscroll-behavior: contain;
-    margin-left: auto;
+    margin-inline-start: auto;
   }
 }
 
@@ -183,7 +189,7 @@
   background-color: var(--secondary-bg);
   border: none;
   margin-bottom: 32px;
-  margin-left: auto;
+  margin-inline-start: auto;
   display: flex;
   align-items: center;
   justify-content: center;
