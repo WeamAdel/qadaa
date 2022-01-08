@@ -1,0 +1,25 @@
+.prayers-table {
+  text-align: center;
+  border-spacing: 2px;
+}
+
+.prayers-table__col {
+  background-color: var(--grass-200);
+  padding: 8px 16px;
+}
+
+.prayers-table__col-icon {
+  width: 40px !important;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.prayers-table__col-name {
+  text-transform: capitalize;
+}
+
+.prayers-table__isha-icon {
+  img {
+    height: 15px !important;
+  }
+}

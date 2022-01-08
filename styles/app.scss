@@ -9,12 +9,14 @@
 
 //Utils
 @import "./utils/classes";
+@import "./utils/framework";
 @import "./utils/normalize";
 
 //Elements
 @import "./elements/html";
 @import "./elements/body";
 @import "./elements/a";
+@import "./elements/hr";
 
 //Components
 @import "./components/navbar";
@@ -23,6 +25,7 @@
 @import "./components/icon";
 @import "./components/container";
 @import "./components/prayer-times";
+@import "./components/prayers-table";
 
 // Pages
 @import "./pages/home.scss";

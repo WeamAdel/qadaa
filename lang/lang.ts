@@ -13,7 +13,7 @@ export const langTranslations = {
  *
  * @lang Site language.
  */
-export function getLangTrans(lang: Language = Language.en) {
+export function getLangTrans(lang: Language = Language.en): { [index: string]: string } {
   if (!(lang in langTranslations)) throw new InvalidLanguageType(lang);
 
   return langTranslations[lang];

@@ -25,6 +25,7 @@ function PrayerTimes() {
         onClose={closeModal}
         aria-labelledby={modalTitleId}
         aria-describedby={modalDescId}
+        keepMounted={true}
       >
         <Box>
           <Times modalTitleId={modalTitleId} modalDescId={modalDescId} closeModal={closeModal} />

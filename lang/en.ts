@@ -1,3 +1,5 @@
+import Prayer from "../types/Prayer";
+
 const EN_TRANSLATION = {
   about: "about",
   aboutPageTitle: "Qadaa' | About",
@@ -12,6 +14,14 @@ const EN_TRANSLATION = {
   siteName: "qadaa'",
   changeToDarkTheme: "change to dark theme",
   changeToLightTheme: "change to light theme",
+  prayerTimes: "Prayer Times",
+  gregorianDateDesc: "Gregorian Date",
+  hijriDateDesc: "Hijri Date",
+  [Prayer.fajr]: Prayer.fajr,
+  [Prayer.dhuhr]: Prayer.dhuhr,
+  [Prayer.asr]: Prayer.asr,
+  [Prayer.maghrib]: Prayer.maghrib,
+  [Prayer.isha]: Prayer.isha,
 };
 
 export default EN_TRANSLATION;

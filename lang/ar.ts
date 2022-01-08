@@ -1,3 +1,5 @@
+import Prayer from "../types/Prayer";
+
 const AR_TRANSLATION = {
   about: "عنّا",
   aboutPageTitle: "قضاء | عنّا",
@@ -11,6 +13,14 @@ const AR_TRANSLATION = {
   siteName: "قضاء",
   changeToDarkTheme: "قم بتفعيل الوضع الليلي",
   changeToLightTheme: "قم بتفعيل الوضع الساطع",
+  prayerTimes: "مواقيت الصلاة",
+  gregorianDateDesc: "التاريخ الميلادي",
+  hijriDateDesc: "التاريخ الهجري",
+  [Prayer.fajr]: "الفجر",
+  [Prayer.dhuhr]: "الظهر",
+  [Prayer.asr]: "العصر",
+  [Prayer.maghrib]: "المغرب",
+  [Prayer.isha]: "العشاء",
 };
 
 export default AR_TRANSLATION;

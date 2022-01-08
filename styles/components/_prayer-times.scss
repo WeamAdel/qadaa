@@ -45,12 +45,18 @@
 }
 
 .prayer-times__times {
-  background-color: var(--primary-bg);
+  background-color: var(--secondary-bg);
   width: min(90vw, 300px);
   border-radius: 2px;
   box-shadow: 0 0 7rem rgb(0 0 0 / 10%);
-  padding: 24px 20px;
+  padding: 32px 24px;
   position: relative;
+  overflow: auto;
+  max-height: 80vh;
+
+  .prayers-table {
+    width: 100%;
+  }
 }
 
 .prayer-times__close-btn {
@@ -78,6 +84,28 @@
   font-weight: var(--fw-med);
 }
 
+.prayer-times__dates {
+  display: flex;
+  flex-wrap: wrap;
+
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.prayer-times__date-wrapper {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  margin-inline-end: 16px;
+  margin-bottom: 8px;
+}
+
+.prayer-times__date {
+  margin-inline-start: 6px;
+}
+
 .MuiModal-root {
   display: flex;
   align-items: center;
@@ -86,5 +114,5 @@
 }
 
 .MuiBackdrop-root {
-  //   background-color: var(--primary-bg-trans);
+  background-color: var(--primary-bg-trans);
 }

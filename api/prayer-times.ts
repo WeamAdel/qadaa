@@ -1,20 +1,17 @@
-interface SuccessResponse {
+export interface SuccessResponse {
   success: boolean;
   prayerTimes: {
-    Fajr: string;
-    Dhuhr: string;
-    Asr: string;
-    Maghrib: string;
-    Isha: string;
+    fajr: string;
+    dhuhr: string;
+    asr: string;
+    maghrib: string;
+    isha: string;
   };
-  date: {
-    hijri: string;
-    timestamp: number;
-  };
+  timestamp: number;
   timezone: string;
 }
 
-interface FailureResponse {
+export interface FailureResponse {
   success: boolean;
   message: string;
 }
@@ -61,22 +58,19 @@ function extractResData(res: any = {}): SuccessResponse {
     results: { datetime, location },
   } = res;
   const { Fajr, Dhuhr, Asr, Maghrib, Isha } = datetime[0].times;
-  const { hijri, timestamp } = datetime[0].date;
+  const { timestamp } = datetime[0].date;
   const { timezone } = location;
 
   return {
     success: true,
     prayerTimes: {
-      Fajr,
-      Dhuhr,
-      Asr,
-      Maghrib,
-      Isha,
+      fajr: Fajr,
+      dhuhr: Dhuhr,
+      asr: Asr,
+      maghrib: Maghrib,
+      isha: Isha,
     },
-    date: {
-      hijri,
-      timestamp,
-    },
+    timestamp,
     timezone,
   };
 }
