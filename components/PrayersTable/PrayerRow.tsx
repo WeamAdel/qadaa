@@ -5,15 +5,15 @@ import PrayerIcon from "./PrayerIcon";
 
 interface PrayerRowInterface {
   prayerName: Prayer;
-  iconAlt: string;
+  icon: ReactNode;
   children: ReactNode;
   props?: any;
 }
 
-function PrayerRow({ prayerName, iconAlt, children, ...props }: PrayerRowInterface) {
+function PrayerRow({ prayerName, icon, children, ...props }: PrayerRowInterface) {
   return (
     <tr className={`prayers-table__row`} {...props}>
-      <PrayerIcon name={prayerName} alt={iconAlt} />
+      <PrayerIcon name={prayerName}>{icon}</PrayerIcon>
       {children}
     </tr>
   );

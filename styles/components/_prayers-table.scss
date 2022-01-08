@@ -8,18 +8,33 @@
   padding: 8px 16px;
 }
 
+[theme="dark"] {
+  .prayers-table__col {
+    background-color: var(--black-900);
+  }
+}
+
 .prayers-table__col-icon {
   width: 40px !important;
   padding-left: 8px;
   padding-right: 8px;
+
+  svg {
+    fill: var(--primary-fg);
+    max-width: 18px;
+
+    path {
+      stroke: var(--primary-fg);
+    }
+  }
 }
 
 .prayers-table__col-name {
   text-transform: capitalize;
 }
 
-.prayers-table__isha-icon {
-  img {
-    height: 15px !important;
+.prayers-table__asr-icon {
+  svg path {
+    stroke: unset;
   }
 }

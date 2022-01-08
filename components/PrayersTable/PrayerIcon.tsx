@@ -1,17 +1,11 @@
-import Image from "next/image";
+import { ReactNode } from "react";
 import Prayer from "../../types/Prayer";
 import PrayerColumn from "./PrayerColumn";
 
-function PrayerIcon({ name, alt }: { name: Prayer; alt: string }) {
+function PrayerIcon({ name, children }: { name: Prayer; children: ReactNode }) {
   return (
     <PrayerColumn classes={`prayers-table__${name}-icon`} type="icon">
-      <Image
-        role="presentation"
-        width="18px"
-        height="18px"
-        src={`/images/prayers/${name}.svg`}
-        alt={alt}
-      />
+      {children}
     </PrayerColumn>
   );
 }

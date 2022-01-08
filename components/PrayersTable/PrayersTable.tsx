@@ -1,27 +1,32 @@
 import { ReactNode } from "react";
 import Prayer from "../../types/Prayer";
 import PrayerRow from "./PrayerRow";
+import FajrIcon from "../../public/images/prayers/fajr.svg";
+import DhuhrIcon from "../../public/images/prayers/dhuhr.svg";
+import AsrIcon from "../../public/images/prayers/asr.svg";
+import MaghribIcon from "../../public/images/prayers/maghrib.svg";
+import IshaIcon from "../../public/images/prayers/isha.svg";
 
-const prayers: { name: Prayer; alt: string }[] = [
+const prayers: { name: Prayer; icon: ReactNode }[] = [
   {
     name: Prayer.fajr,
-    alt: "Sunrise",
+    icon: <FajrIcon />,
   },
   {
     name: Prayer.dhuhr,
-    alt: "Sunny",
+    icon: <DhuhrIcon />,
   },
   {
     name: Prayer.asr,
-    alt: "Mostly sunny",
+    icon: <AsrIcon />,
   },
   {
     name: Prayer.maghrib,
-    alt: "Sunset",
+    icon: <MaghribIcon />,
   },
   {
     name: Prayer.isha,
-    alt: "Moon",
+    icon: <IshaIcon />,
   },
 ];
 
@@ -31,9 +36,9 @@ interface PrayersTable {
 
 function PrayersTable({ columns }: PrayersTable) {
   columns;
-  const rowsJSX = prayers.map(({ name, alt }) => {
+  const rowsJSX = prayers.map(({ name, icon }) => {
     return (
-      <PrayerRow key={name} prayerName={name} iconAlt={alt}>
+      <PrayerRow key={name} prayerName={name} icon={icon}>
         {columns[name]}
       </PrayerRow>
     );
