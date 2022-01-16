@@ -18,7 +18,7 @@ function PrayerTimes() {
   }
 
   return (
-    <aside className="prayer-times">
+    <aside className="prayer-times" data-testid="prayer-times" data-open={isOpen}>
       <ToggleButton openModal={openModal} />
       <Modal
         open={isOpen}

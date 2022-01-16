@@ -3,7 +3,7 @@ import Theme from "../types/Theme";
 
 export let ThemeContext = createContext({ theme: Theme.light, changeTheme: () => {} });
 
-function Lang({ children }: { children: any }) {
+function ThemeProvider({ children }: { children: any }) {
   const [theme, setTheme] = useState(Theme.light);
 
   useEffect(() => {
@@ -62,4 +62,4 @@ function updateTheme(theme: Theme) {
   if (body) body.setAttribute("theme", theme);
 }
 
-export default Lang;
+export default ThemeProvider;

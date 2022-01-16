@@ -1,13 +1,17 @@
 import { useRouter } from "next/router";
 import { ReactNode, useEffect, useState } from "react";
-import getAPIPrayerTimes, { FailureResponse, SuccessResponse } from "../../../api/prayer-times";
-import Language from "../../../types/Language";
-import Prayer from "../../../types/Prayer";
+
 import PrayersTable from "../../PrayersTable/PrayersTable";
-import { formatDate, formatHejriDate } from "../../utils/utils";
 import CloseButton from "./CloseButton";
 import ModalHeader from "./ModalHeader";
 import PrayerInfoCols from "./PrayerInfoCols";
+
+import getAPIPrayerTimes from "../../../api/prayer-times";
+import { formatDate, formatHejriDate } from "../../utils/utils";
+
+import Language from "../../../types/Language";
+import Prayer from "../../../types/Prayer";
+import { FailureResponse, SuccessResponse } from "../../../types/api/prayer-times";
 
 interface TimesInterface {
   modalTitleId: string;
@@ -42,22 +46,24 @@ const initialPrayerTimes: PrayerTime = {
 function Times({ modalTitleId, modalDescId, closeModal }: TimesInterface) {
   const [prayerTimes, setPrayerTimes] = useState<PrayerTime>(initialPrayerTimes);
   const [dates, setDates] = useState<Dates>(initialDates);
-  const { locale = Language.en } = useRouter();
+  const { locale = Language.en } = useRouter() || {};
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(async function (position) {
-      let long = position.coords.longitude;
-      let lat = position.coords.latitude;
-
-      const result = await getAPIPrayerTimes(long, lat);
-
-      if (result.success) {
-        updatePrayerTimes(result as SuccessResponse);
-      } else {
-        handleAPIRequestFailure(result as FailureResponse);
-      }
-    });
+    navigator.geolocation.getCurrentPosition(handleGeolocationSuccess);
   }, []);
+
+  async function handleGeolocationSuccess(position: GeolocationPosition) {
+    let long = position.coords.longitude;
+    let lat = position.coords.latitude;
+
+    const result = await getAPIPrayerTimes(long, lat);
+
+    if (result.success) {
+      updatePrayerTimes(result as SuccessResponse);
+    } else {
+      handleAPIRequestFailure(result as FailureResponse);
+    }
+  }
 
   function updatePrayerTimes({ prayerTimes, timestamp, timezone }: SuccessResponse) {
     const hijriDate = formatHejriDate(timestamp, locale);

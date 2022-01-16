@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import Prayer from "../../types/Prayer";
 import PrayerRow from "./PrayerRow";
-import FajrIcon from "../../public/images/prayers/fajr.svg";
-import DhuhrIcon from "../../public/images/prayers/dhuhr.svg";
-import AsrIcon from "../../public/images/prayers/asr.svg";
-import MaghribIcon from "../../public/images/prayers/maghrib.svg";
-import IshaIcon from "../../public/images/prayers/isha.svg";
+import FajrIcon from "./Icons/Fajr";
+import DhuhrIcon from "./Icons/Dhuhr";
+import AsrIcon from "./Icons/Asr";
+import MaghribIcon from "./Icons/Maghrib";
+import IshaIcon from "./Icons/Isha";
 
 const prayers: { name: Prayer; icon: ReactNode }[] = [
   {
@@ -44,7 +44,11 @@ function PrayersTable({ columns }: PrayersTable) {
     );
   });
 
-  return <table className="prayers-table">{rowsJSX}</table>;
+  return (
+    <table className="prayers-table">
+      <tbody>{rowsJSX}</tbody>
+    </table>
+  );
 }
 
 export default PrayersTable;

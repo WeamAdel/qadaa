@@ -6,8 +6,8 @@ function ToggleButton({ openModal }: { openModal: MouseEventHandler }) {
     <button
       className="prayer-times__toggle-btn"
       title="Show prayer times."
-      data-testid="prayer-times-toggle-btn"
       onClick={openModal}
+      data-testid="prayer-times-open-btn"
     >
       <div className="prayer-times__ribble-outer" role="presentation">
         <div className="prayer-times__ribble-inner">

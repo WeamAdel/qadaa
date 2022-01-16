@@ -1,22 +1,4 @@
-export interface SuccessResponse {
-  success: boolean;
-  prayerTimes: {
-    fajr: string;
-    dhuhr: string;
-    asr: string;
-    maghrib: string;
-    isha: string;
-  };
-  timestamp: number;
-  timezone: string;
-}
-
-export interface FailureResponse {
-  success: boolean;
-  message: string;
-}
-
-type PrayerTimesResponse = SuccessResponse | FailureResponse;
+import { SuccessResponse, FailureResponse, PrayerTimesResponse } from "../types/api/prayer-times";
 
 const apiEndPoint = "https://api.pray.zone/v2/times/today.json";
 
