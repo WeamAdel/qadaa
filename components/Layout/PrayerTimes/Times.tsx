@@ -54,8 +54,12 @@ function Times({ modalTitleId, modalDescId, closeModal }: TimesInterface) {
   const { prayerTimeAPIFailed } = useContext(LangContext);
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(handleGeolocationSuccess);
+    getPrayerTimes();
   }, []);
+
+  function getPrayerTimes() {
+    navigator.geolocation.getCurrentPosition(handleGeolocationSuccess);
+  }
 
   async function handleGeolocationSuccess(position: GeolocationPosition) {
     let long = position.coords.longitude;
@@ -103,12 +107,7 @@ function Times({ modalTitleId, modalDescId, closeModal }: TimesInterface) {
   ) : null;
 
   const apiFailure = apiFailed ? (
-    <FailureMessage
-      message={prayerTimeAPIFailed}
-      onRetry={() => {
-        console.log("Retrying ...");
-      }}
-    />
+    <FailureMessage message={prayerTimeAPIFailed} onRetry={getPrayerTimes} />
   ) : null;
 
   const prayersTableJSX = <PrayersTable columns={getColumns()} />;
