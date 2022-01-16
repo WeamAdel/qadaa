@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useContext, useEffect, useState } from "react";
 
 import PrayersTable from "../../PrayersTable/PrayersTable";
 import CloseButton from "./CloseButton";
 import ModalHeader from "./ModalHeader";
 import PrayerInfoCols from "./PrayerInfoCols";
+import FailureMessage from "./FailureMessage";
 
 import getAPIPrayerTimes from "../../../api/prayer-times";
 import { formatDate, formatHejriDate } from "../../utils/utils";
@@ -12,6 +13,7 @@ import { formatDate, formatHejriDate } from "../../utils/utils";
 import Language from "../../../types/Language";
 import Prayer from "../../../types/Prayer";
 import { FailureResponse, SuccessResponse } from "../../../types/api/prayer-times";
+import { LangContext } from "../../../Providers/Language";
 
 interface TimesInterface {
   modalTitleId: string;
@@ -46,7 +48,10 @@ const initialPrayerTimes: PrayerTime = {
 function Times({ modalTitleId, modalDescId, closeModal }: TimesInterface) {
   const [prayerTimes, setPrayerTimes] = useState<PrayerTime>(initialPrayerTimes);
   const [dates, setDates] = useState<Dates>(initialDates);
+  const [locationAccessDenied, setLocationAccessDenied] = useState(false);
+  const [apiFailed, setAPIFailed] = useState(false);
   const { locale = Language.en } = useRouter() || {};
+  const { prayerTimeAPIFailed } = useContext(LangContext);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(handleGeolocationSuccess);
@@ -60,6 +65,7 @@ function Times({ modalTitleId, modalDescId, closeModal }: TimesInterface) {
 
     if (result.success) {
       updatePrayerTimes(result as SuccessResponse);
+      setAPIFailed(false);
     } else {
       handleAPIRequestFailure(result as FailureResponse);
     }
@@ -79,6 +85,7 @@ function Times({ modalTitleId, modalDescId, closeModal }: TimesInterface) {
 
   function handleAPIRequestFailure(result: FailureResponse) {
     console.log(result);
+    setAPIFailed(true);
   }
 
   function getColumns() {
@@ -91,17 +98,36 @@ function Times({ modalTitleId, modalDescId, closeModal }: TimesInterface) {
     return columns;
   }
 
+  const accessDeinedMsgJSX = locationAccessDenied ? (
+    <FailureMessage message={"Access denied"} />
+  ) : null;
+
+  const apiFailure = apiFailed ? (
+    <FailureMessage
+      message={prayerTimeAPIFailed}
+      onRetry={() => {
+        console.log("Retrying ...");
+      }}
+    />
+  ) : null;
+
+  const prayersTableJSX = <PrayersTable columns={getColumns()} />;
+
+  const modalBody = accessDeinedMsgJSX || apiFailure || prayersTableJSX;
+
   return (
-    <div className="prayer-times__times">
+    <div>
       <CloseButton closeModal={closeModal} />
-      <ModalHeader
-        modalTitleId={modalTitleId}
-        hijriDate={dates.hijriDate}
-        date={dates.date}
-        timezone={dates.timezone}
-      />
-      <hr />
-      <PrayersTable columns={getColumns()} />
+      <div className="prayer-times__times">
+        <ModalHeader
+          modalTitleId={modalTitleId}
+          hijriDate={dates.hijriDate}
+          date={dates.date}
+          timezone={dates.timezone}
+        />
+        <hr />
+        {modalBody}
+      </div>
     </div>
   );
 }

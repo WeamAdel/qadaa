@@ -17,6 +17,8 @@ const EN_TRANSLATION = {
   prayerTimes: "Prayer Times",
   gregorianDateDesc: "Gregorian Date",
   hijriDateDesc: "Hijri Date",
+  retry: "retry",
+  prayerTimeAPIFailed: "Failed to get the prayer times at the moment.",
   [Prayer.fajr]: Prayer.fajr,
   [Prayer.dhuhr]: Prayer.dhuhr,
   [Prayer.asr]: Prayer.asr,

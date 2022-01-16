@@ -60,14 +60,13 @@
 }
 
 .prayer-times__close-btn {
-  position: absolute;
-  top: -10px;
-  right: 0;
-  transform: translateY(-100%);
   font-size: 14px;
   border-radius: 2px;
   width: 28px;
   height: 28px;
+  margin-bottom: 12px;
+  margin-inline-start: auto;
+  margin-inline-end: 0;
 
   svg {
     width: 20px;
@@ -78,15 +77,14 @@
   font-size: 18px;
   display: inline-block;
   margin-top: 0;
-  margin-bottom: 24px;
+  margin-bottom: 0;
   font-weight: var(--fw-med);
-  // background-color: var(--primary-fg);
-  // color: var(--primary-bg);
 }
 
 .prayer-times__dates {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 24px;
 
   p {
     margin-top: 0;
