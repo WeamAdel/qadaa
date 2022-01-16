@@ -14,10 +14,12 @@ import Language from "../../../types/Language";
 import Prayer from "../../../types/Prayer";
 import { FailureResponse, SuccessResponse } from "../../../types/api/prayer-times";
 import { LangContext } from "../../../Providers/Language";
+import { GeolocationErrorCode } from "../../../types/Geolocation";
 
 interface TimesInterface {
   modalTitleId: string;
   modalDescId: string;
+  isOpen: boolean;
   closeModal: () => void;
 }
 
@@ -45,20 +47,26 @@ const initialPrayerTimes: PrayerTime = {
   [Prayer.isha]: "-",
 };
 
-function Times({ modalTitleId, modalDescId, closeModal }: TimesInterface) {
+function Times({ modalTitleId, modalDescId, closeModal, isOpen }: TimesInterface) {
   const [prayerTimes, setPrayerTimes] = useState<PrayerTime>(initialPrayerTimes);
   const [dates, setDates] = useState<Dates>(initialDates);
-  const [locationAccessDenied, setLocationAccessDenied] = useState(false);
+  const [locationAccessFailureMsg, setLocationAccessFailureMsg] = useState("");
   const [apiFailed, setAPIFailed] = useState(false);
   const { locale = Language.en } = useRouter() || {};
-  const { prayerTimeAPIFailed } = useContext(LangContext);
+  const { prayerTimeAPIFailed, permissionDenied, possitionUnavailable, timeout } =
+    useContext(LangContext);
 
   useEffect(() => {
-    getPrayerTimes();
-  }, []);
+    /* Get prayers only when the modal is open and no data is set yet, 
+      otherwise the location permission prompt will popup on first page load
+    */
+    if (isOpen && !dates.timezone) {
+      getPrayerTimes();
+    }
+  }, [isOpen]);
 
   function getPrayerTimes() {
-    navigator.geolocation.getCurrentPosition(handleGeolocationSuccess);
+    navigator.geolocation.getCurrentPosition(handleGeolocationSuccess, handleGeolocationFailure);
   }
 
   async function handleGeolocationSuccess(position: GeolocationPosition) {
@@ -73,6 +81,21 @@ function Times({ modalTitleId, modalDescId, closeModal }: TimesInterface) {
     } else {
       handleAPIRequestFailure(result as FailureResponse);
     }
+
+    setLocationAccessFailureMsg("");
+  }
+
+  const geoloactionErrors: { [index: number]: string } = {
+    [GeolocationErrorCode.permissionDenied]: permissionDenied,
+    [GeolocationErrorCode.possitionUnavailable]: possitionUnavailable,
+    [GeolocationErrorCode.timeout]: timeout,
+  };
+
+  async function handleGeolocationFailure({ code }: GeolocationPositionError) {
+    console.log(geoloactionErrors[code]);
+    setLocationAccessFailureMsg(geoloactionErrors[code]);
+
+    retryOnDeclinedLocationRequest();
   }
 
   function updatePrayerTimes({ prayerTimes, timestamp, timezone }: SuccessResponse) {
@@ -92,6 +115,19 @@ function Times({ modalTitleId, modalDescId, closeModal }: TimesInterface) {
     setAPIFailed(true);
   }
 
+  function retryOnDeclinedLocationRequest() {
+    navigator.permissions
+      .query({ name: "geolocation" })
+      .then(({ state }) => {
+        if (state === "prompt") {
+          getPrayerTimes();
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
   function getColumns() {
     const columns: { [index: string]: ReactNode } = {};
 
@@ -102,8 +138,8 @@ function Times({ modalTitleId, modalDescId, closeModal }: TimesInterface) {
     return columns;
   }
 
-  const accessDeinedMsgJSX = locationAccessDenied ? (
-    <FailureMessage message={"Access denied"} />
+  const accessDeinedMsgJSX = locationAccessFailureMsg ? (
+    <FailureMessage message={locationAccessFailureMsg} />
   ) : null;
 
   const apiFailure = apiFailed ? (

@@ -18,7 +18,11 @@ const EN_TRANSLATION = {
   gregorianDateDesc: "Gregorian Date",
   hijriDateDesc: "Hijri Date",
   retry: "retry",
-  prayerTimeAPIFailed: "Failed to get the prayer times at the moment.",
+  prayerTimeAPIFailed: "Failed to get the prayer times at the moment",
+  permissionDenied: "Permission denied, please allow this site to access your location",
+  possitionUnavailable: "Failed to get your location",
+  timeout:
+    "Your permission was timedout please try allowing this site to access your location again",
   [Prayer.fajr]: Prayer.fajr,
   [Prayer.dhuhr]: Prayer.dhuhr,
   [Prayer.asr]: Prayer.asr,

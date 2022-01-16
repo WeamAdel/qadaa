@@ -28,7 +28,12 @@ function PrayerTimes() {
         keepMounted={true}
       >
         <Box>
-          <Times modalTitleId={modalTitleId} modalDescId={modalDescId} closeModal={closeModal} />
+          <Times
+            modalTitleId={modalTitleId}
+            modalDescId={modalDescId}
+            closeModal={closeModal}
+            isOpen={isOpen}
+          />
         </Box>
       </Modal>
     </aside>
