@@ -9,7 +9,7 @@ interface OffCanvasInterface {
 
 function OffCanvas({ children, isExpanded, closeMenu }: OffCanvasInterface) {
   return (
-    <div className="navbar__off-canvas" aria-expanded={isExpanded}>
+    <div className="navbar__off-canvas" aria-expanded={isExpanded} data-testid="nav-off-canvas">
       <div className="navbar__off-canvas-inner">
         <button
           className="navbar__close-btn close-button"

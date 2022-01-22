@@ -59,6 +59,7 @@ function Times({ modalTitleId, modalDescId, closeModal, isOpen }: TimesInterface
   useEffect(() => {
     /* Get prayers only when the modal is open and no data is set yet, 
       otherwise the location permission prompt will popup on first page load
+      with modal keepMounted set to true.
     */
     if (isOpen && !dates.timezone) {
       getPrayerTimes();
@@ -161,7 +162,7 @@ function Times({ modalTitleId, modalDescId, closeModal, isOpen }: TimesInterface
           timezone={dates.timezone}
         />
         <hr />
-        {modalBody}
+        <div id={modalDescId}>{modalBody}</div>
       </div>
     </div>
   );
