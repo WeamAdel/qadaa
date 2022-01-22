@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import { useContext } from "react";
+import Tabs from "../components/GenerateSchedule/Tabs";
 
 import Page from "../components/Layout/Page/Page";
 import { LangContext } from "../Providers/Language";
@@ -9,7 +10,10 @@ const GenerateSchedule: NextPage = () => {
 
   return (
     <Page title={schedulePageTitle} alias="generate-schedule">
-      <h1 data-testid="">Generate Schedule</h1>
+      <div className="container">
+        <h1 data-testid="">Generate Schedule</h1>
+        <Tabs />
+      </div>
     </Page>
   );
 };

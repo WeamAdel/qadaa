@@ -4,9 +4,6 @@
 
 .home__heading-wrapper {
   text-align: center;
-
-  @include clamp("padding-top", 60, 36, 80);
-  @include clamp("padding-bottom", 80, 54, 100);
 }
 
 .home__heading {
