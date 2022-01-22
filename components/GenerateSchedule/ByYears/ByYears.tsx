@@ -1,9 +1,13 @@
+import { useContext } from "react";
+import { LangContext } from "../../../Providers/Language";
 import Tab from "../Tab/Tab";
 
 function ByYears() {
+  const { yearsHeading, yearsDesc } = useContext(LangContext);
+
   const head = {
-    heading: "Select missed years",
-    description: "Generate prayers schedule by selecting the number of years missed.",
+    heading: yearsHeading,
+    description: yearsDesc,
   };
   return (
     <Tab head={head}>

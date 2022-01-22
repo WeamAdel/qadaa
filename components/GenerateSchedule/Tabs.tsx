@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
@@ -8,14 +8,16 @@ import { Tab as TabEnum, TabInterface } from "../../types/Tabs";
 import ByYears from "./ByYears/ByYears";
 import ByTimeRage from "./ByTimeRage/ByTimeRage";
 import ByCount from "./ByCount/ByCount";
+import { LangContext } from "../../Providers/Language";
 
 function Tabs() {
   const [value, setValue]: [TabEnum, Function] = useState(TabEnum.byYears);
+  const { years, timeRange, prayersCount } = useContext(LangContext);
 
   const tabs: TabInterface[] = [
-    { title: "Years", component: <ByYears />, value: TabEnum.byYears },
-    { title: "Time Range", component: <ByTimeRage />, value: TabEnum.byTimeRange },
-    { title: "Prayers Count", component: <ByCount />, value: TabEnum.byCount },
+    { title: years, component: <ByYears />, value: TabEnum.byYears },
+    { title: timeRange, component: <ByTimeRage />, value: TabEnum.byTimeRange },
+    { title: prayersCount, component: <ByCount />, value: TabEnum.byCount },
   ];
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
