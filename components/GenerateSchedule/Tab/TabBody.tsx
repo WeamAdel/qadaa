@@ -1,5 +1,5 @@
-function TabBody() {
-  return <div>Tab body</div>;
+function TabBody({ children }: { children: any }) {
+  return <div>{children}</div>;
 }
 
 export default TabBody;

@@ -1,0 +1,15 @@
+.underlined-heading {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: "";
+    height: max(min(0.45vw, 6px), 4px);
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translateY(-75%);
+    background-color: var(--yellow-200);
+  }
+}

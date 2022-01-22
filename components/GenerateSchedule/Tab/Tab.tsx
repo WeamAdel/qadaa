@@ -1,13 +1,18 @@
+import { TabHeadInterface } from "../../../types/Tabs";
 import TabBody from "./TabBody";
 import TabHead from "./TabHead";
 
-function Tab() {
+interface TabInterface {
+  head: TabHeadInterface;
+  children: JSX.Element;
+}
+
+function Tab({ head, children }: TabInterface) {
   return (
     <div>
-      tab head
-      <TabHead />
+      <TabHead heading={head.heading} description={head.description} />
       <hr />
-      <TabBody />
+      <TabBody>{children}</TabBody>
     </div>
   );
 }

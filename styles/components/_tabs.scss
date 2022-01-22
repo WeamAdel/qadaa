@@ -1,0 +1,94 @@
+.tabs {
+  background-color: var(--secondary-bg);
+  max-width: min(85vw, 550px);
+  margin-left: auto;
+  margin-right: auto;
+
+  .MuiButtonBase-root {
+    color: var(--primary-fg);
+    font-weight: var(--fw-regular);
+    text-transform: capitalize;
+  }
+
+  .MuiTabs-scroller {
+    background-color: var(--primary-bg);
+  }
+
+  .Mui-selected {
+    background-color: var(--tertiary-accent);
+    border-bottom: 0;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      clip-path: polygon(50% 45%, 0% 100%, 100% 100%);
+      width: 18px;
+      height: 16px;
+      background-color: var(--primary-accent);
+      border-radius: 2px;
+    }
+  }
+
+  .css-1aquho2-MuiTabs-indicator {
+    display: none;
+  }
+
+  .MuiTabs-flexContainer {
+    overflow-x: auto;
+  }
+
+  .MuiTabPanel-root {
+    padding: max(min(2.35vw, 36px), 20px) max(min(2.35vw, 36px), 14px);
+  }
+
+  @media (min-width: 767px) {
+    width: max(min(47vw, 600px), 400px);
+  }
+}
+
+.tab__heading {
+  font-size: max(min(1.5vw, 24px), 18px);
+  font-weight: var(--fw-med);
+  margin-top: 0;
+}
+
+.tab__desc-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: var(--primary-accent);
+  padding: max(min(1.2vw, 16px), 12px) max(min(1vw, 16px), 8px);
+}
+
+.tab__icon {
+  svg {
+    width: max(min(1.6vw, 28px), 18px);
+  }
+}
+
+.tab__desc {
+  margin: 0 0 0 max(min(1.4vw, 16px), 8px);
+  letter-spacing: 1px;
+  font-size: max(min(1.2vw, 16px), 14px);
+}
+
+[theme="dark"] {
+  .tabs {
+    background-color: var(--black-600);
+
+    .MuiTabs-scroller {
+      background-color: var(--black-800);
+    }
+
+    .Mui-selected {
+      background-color: var(--black-600);
+    }
+  }
+
+  .tab__desc-wrapper {
+    background-color: var(--black-700);
+  }
+}

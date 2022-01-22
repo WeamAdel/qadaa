@@ -9,3 +9,8 @@ export interface TabInterface {
   value: Tab;
   component: JSX.Element;
 }
+
+export interface TabHeadInterface {
+  heading: string;
+  description: string;
+}

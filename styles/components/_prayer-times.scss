@@ -1,9 +1,14 @@
+:root {
+  --prayer-times-size: 90px;
+  --prayer-times-padding: 7px;
+}
+
 .prayer-times__toggle-btn {
   border: none;
   background: transparent;
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  width: var(--prayer-times-size);
+  height: var(--prayer-times-size);
   position: fixed;
   inset-inline-start: var(--container-px);
   bottom: var(--navbar-py);
@@ -27,13 +32,13 @@
 .prayer-times__ribble-outer,
 .prayer-times__ribble-core {
   border-radius: 50%;
-  padding: 10px;
-  border: 1px solid var(--grass-400);
+  padding: var(--prayer-times-padding);
 }
 
 .prayer-times__ribble-outer {
   background-color: var(--grass-500);
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--grass-400);
 }
 
 .prayer-times__ribble-inner {
@@ -113,4 +118,11 @@
 
 .MuiBackdrop-root {
   background-color: var(--primary-bg-trans);
+}
+
+@media (min-width: 767px) {
+  :root {
+    --prayer-times-size: 120px;
+    --prayer-times-padding: 10px;
+  }
 }

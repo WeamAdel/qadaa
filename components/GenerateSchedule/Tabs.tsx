@@ -35,16 +35,18 @@ function Tabs() {
   });
 
   return (
-    <Box sx={{ width: "100%", typography: "body1" }}>
-      <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <TabList onChange={handleChange} aria-label="Choose you schedule type">
-            {tabTitlesJSX}
-          </TabList>
-        </Box>
-        {tabContentJSX}
-      </TabContext>
-    </Box>
+    <section className="tabs">
+      <Box sx={{ width: "100%", typography: "body1" }}>
+        <TabContext value={value}>
+          <Box>
+            <TabList onChange={handleChange} aria-label="Choose you schedule type">
+              {tabTitlesJSX}
+            </TabList>
+          </Box>
+          {tabContentJSX}
+        </TabContext>
+      </Box>
+    </section>
   );
 }
 

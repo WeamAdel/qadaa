@@ -1,6 +1,8 @@
-main {
+:root {
   --main-padding-y: max(min(4.4vw, 68px), 32px);
+}
 
+main {
   padding-top: var(--main-padding-y);
-  padding-bottom: var(--main-padding-y);
+  padding-bottom: calc(var(--main-padding-y) + var(--prayer-times-size));
 }

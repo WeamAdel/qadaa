@@ -11,7 +11,7 @@ const GenerateSchedule: NextPage = () => {
   return (
     <Page title={schedulePageTitle} alias="generate-schedule">
       <div className="container">
-        <h1 data-testid="">Generate Schedule</h1>
+        <h1 className="sr-only">Generate Prayers Schedule</h1>
         <Tabs />
       </div>
     </Page>
