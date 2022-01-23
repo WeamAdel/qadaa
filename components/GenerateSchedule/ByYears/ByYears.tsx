@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { LangContext } from "../../../Providers/Language";
 import { Tab as TabEnum } from "../../../types/Tabs";
+import Form from "./Form";
 import Tab from "../Tab/Tab";
 
 function ByYears({ selectedValue }: { selectedValue: TabEnum }) {
@@ -13,7 +14,7 @@ function ByYears({ selectedValue }: { selectedValue: TabEnum }) {
 
   return (
     <Tab head={head} value={TabEnum.byYears} selectedValue={selectedValue}>
-      <div>form here</div>
+      <Form />
     </Tab>
   );
 }

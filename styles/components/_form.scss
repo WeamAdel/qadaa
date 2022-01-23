@@ -1,0 +1,33 @@
+.form__label {
+  display: block;
+  margin-bottom: 16px;
+  font-weight: var(--fw-med);
+  font-size: 14px;
+}
+
+.form__label-required {
+  color: var(--yellow-900);
+  margin-left: 4px;
+}
+
+.form__input {
+  background-color: var(--primary-accent);
+  border: 1px solid var(--primary-bg);
+  padding: 8px 10px;
+  color: var(--primary-fg);
+
+  &[type="number"] {
+    width: 80px;
+  }
+}
+
+.form__error-message {
+  color: var(--invalid);
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.form__submit-btn {
+  margin-top: 20px;
+}

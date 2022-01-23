@@ -9,6 +9,7 @@
   --tertiary-accent: var(--grass-800);
   --contrast-accent: var(--yellow-900);
   --primary-bg-trans: var(--grass-100);
+  --invalid: var(--red-900);
 }
 
 [theme="dark"] {
@@ -17,10 +18,11 @@
   --primary-fg: var(--grass-600);
   --secondary-fg: var(--gray-700);
   --tertiary-fg: var(--black-900);
-  --primary-accent: var(--grass-400);
+  --primary-accent: var(--black-700);
   --secondary-accent: var(--grass-900);
   --tertiary-accent: var(--grass-800);
   --contrast-accent: var(--yellow-900);
   --primary-bg-trans: var(--grass-100);
   --primary-bg-trans: var(--black-300);
+  --invalid: var(--red-500);
 }
