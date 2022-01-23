@@ -10,14 +10,18 @@ import ByTimeRage from "./ByTimeRage/ByTimeRage";
 import ByCount from "./ByCount/ByCount";
 import { LangContext } from "../../Providers/Language";
 
-function Tabs() {
-  const [value, setValue]: [TabEnum, Function] = useState(TabEnum.byYears);
+function Tabs({ initTab = TabEnum.byYears }: { initTab?: TabEnum }) {
+  const [value, setValue]: [TabEnum, Function] = useState(initTab);
   const { years, timeRange, prayersCount } = useContext(LangContext);
 
   const tabs: TabInterface[] = [
-    { title: years, component: <ByYears />, value: TabEnum.byYears },
-    { title: timeRange, component: <ByTimeRage />, value: TabEnum.byTimeRange },
-    { title: prayersCount, component: <ByCount />, value: TabEnum.byCount },
+    { title: years, component: <ByYears selectedValue={value} />, value: TabEnum.byYears },
+    {
+      title: timeRange,
+      component: <ByTimeRage selectedValue={value} />,
+      value: TabEnum.byTimeRange,
+    },
+    { title: prayersCount, component: <ByCount selectedValue={value} />, value: TabEnum.byCount },
   ];
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -25,7 +29,9 @@ function Tabs() {
   };
 
   const tabTitlesJSX = tabs.map((tab) => {
-    return <Tab key={tab.value} label={tab.title} value={tab.value} />;
+    return (
+      <Tab key={tab.value} label={tab.title} value={tab.value} itemID={"tab-btn-" + tab.value} />
+    );
   });
 
   const tabContentJSX = tabs.map((tab) => {

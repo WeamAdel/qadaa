@@ -29,7 +29,7 @@ const EN_TRANSLATION = {
   yearsHeading: "Enter missed years",
   timeRangeHeading: "Select time range",
   prayersCountHeading: "Enter prayers count",
-  yearsDesc: "Generate prayers schedule by selecting the number of prayers you missed.",
+  yearsDesc: "Generate the prayers schedule by selecting the number of prayers you missed.",
   timeRangeDesc: "Generate the prayers schedule by selecting two dates from calendars.",
   prayersCountDesc: "Generate the prayers schedule by selecting the count of each missed prayer.",
   [Prayer.fajr]: Prayer.fajr,
