@@ -30,6 +30,19 @@ const AR_TRANSLATION = {
   yearsDesc: "قم بإنشاء جدول الصلوات بناءا على عدد السنوات الفائتة.",
   timeRangeDesc: "قم بإنشاء جدول الصلوات عن طريق اختيار تاريخين من التقويم.",
   prayersCountDesc: "قم بإنشاء جدول الصلاوات عن طريق إدخال عدد كل صلاة فائتة.",
+  startDate: "تاريخ البدء",
+  endDate: "تاريخ الانتهاء",
+  generate: "إنشاء",
+  numberOfYears: "عدد السنوات",
+
+  yearsRequired: "هذا الحقل مطلوب",
+  minYears: "يجب أن لا يقل عدد السنوات عن 1",
+  maxYears: "يجب أن لا يزيد عدد السنوات عن 100",
+
+  startDateRequired: "تاريخ البدأ مطلوب",
+  endDateRequired: "تاريخ الانتهاء مطلوب",
+  rangeError: "أدخل تاريخ أكبر من تاريخ البدأ",
+
   [Prayer.fajr]: Prayer.fajr,
   [Prayer.fajr]: "الفجر",
   [Prayer.dhuhr]: "الظهر",

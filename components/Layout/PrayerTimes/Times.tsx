@@ -8,7 +8,7 @@ import PrayerInfoCols from "./PrayerInfoCols";
 import FailureMessage from "./FailureMessage";
 
 import getAPIPrayerTimes from "../../../api/prayer-times";
-import { formatDate, formatHejriDate } from "../../utils/utils";
+import { formatDate, formatHejriDate } from "../../../utils/utils";
 
 import Language from "../../../types/Language";
 import Prayer from "../../../types/Prayer";

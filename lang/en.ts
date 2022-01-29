@@ -32,6 +32,19 @@ const EN_TRANSLATION = {
   yearsDesc: "Generate the prayers schedule by selecting the number of prayers you missed.",
   timeRangeDesc: "Generate the prayers schedule by selecting two dates from calendars.",
   prayersCountDesc: "Generate the prayers schedule by selecting the count of each missed prayer.",
+  startDate: "start date",
+  endDate: "end date",
+  generate: "generate",
+  numberOfYears: "number of years",
+
+  yearsRequired: "years count is required",
+  minYears: "years count can not be less than 1",
+  maxYears: "years count can not be more than 100",
+
+  startDateRequired: "start date is required",
+  endDateRequired: "end date is required",
+  rangeError: "end date can not be less than start date",
+
   [Prayer.fajr]: Prayer.fajr,
   [Prayer.dhuhr]: Prayer.dhuhr,
   [Prayer.asr]: Prayer.asr,

@@ -1,13 +1,19 @@
+.form__field {
+  &:not(:last-child) {
+    margin-bottom: 28px;
+  }
+}
+
 .form__label {
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   font-weight: var(--fw-med);
   font-size: 14px;
 }
 
 .form__label-required {
   color: var(--yellow-900);
-  margin-left: 4px;
+  margin-inline-start: 4px;
 }
 
 .form__input {
@@ -15,6 +21,7 @@
   border: 1px solid var(--primary-bg);
   padding: 8px 10px;
   color: var(--primary-fg);
+  font-family: var(--roboto);
 
   &[type="number"] {
     width: 80px;

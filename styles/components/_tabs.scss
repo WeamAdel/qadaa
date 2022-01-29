@@ -80,6 +80,24 @@
   font-size: max(min(1.2vw, 16px), 14px);
 }
 
+.range__dates-wrapper {
+  .form__input {
+    width: 100%;
+  }
+
+  @media (min-width: 540px) {
+    display: flex;
+
+    .form__input {
+      width: unset;
+    }
+
+    .range__start-field {
+      margin-inline-end: max(min(2.4vw, 36px), 20px);
+    }
+  }
+}
+
 [theme="dark"] {
   .tabs {
     background-color: var(--black-600);
