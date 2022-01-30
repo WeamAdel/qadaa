@@ -74,6 +74,7 @@ function Form() {
               //@ts-ignore
               if (startDateRef) startDateRef.current = e;
             }}
+            data-testid="range-start"
           />
           {startErrorMessageJSX}
         </div>
@@ -87,6 +88,7 @@ function Form() {
             id="rangeEnd"
             name="rangeEnd"
             type="date"
+            data-testid="range-end"
           />
           {endErrorMessageJSX}
         </div>
