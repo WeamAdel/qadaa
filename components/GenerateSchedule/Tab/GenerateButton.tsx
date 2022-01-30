@@ -5,7 +5,11 @@ function GenerateButton() {
   const { generate } = useContext(LangContext);
 
   return (
-    <button type="submit" className="form__submit-btn button button--primary">
+    <button
+      data-testid="generate-form-submit"
+      type="submit"
+      className="form__submit-btn button button--primary"
+    >
       {generate}
     </button>
   );

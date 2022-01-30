@@ -38,12 +38,12 @@ const EN_TRANSLATION = {
   numberOfYears: "number of years",
 
   yearsRequired: "years count is required",
-  minYears: "years count can not be less than 1",
-  maxYears: "years count can not be more than 100",
+  minYears: "years count can not be less than ",
+  maxYears: "years count can not be more than ",
 
   startDateRequired: "start date is required",
   endDateRequired: "end date is required",
-  rangeError: "end date can not be less than start date",
+  rangeError: "enter date greater than start date",
 
   [Prayer.fajr]: Prayer.fajr,
   [Prayer.dhuhr]: Prayer.dhuhr,

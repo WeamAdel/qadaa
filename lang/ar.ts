@@ -36,8 +36,8 @@ const AR_TRANSLATION = {
   numberOfYears: "عدد السنوات",
 
   yearsRequired: "هذا الحقل مطلوب",
-  minYears: "يجب أن لا يقل عدد السنوات عن 1",
-  maxYears: "يجب أن لا يزيد عدد السنوات عن 100",
+  minYears: "يجب أن لا يقل عدد السنوات عن ",
+  maxYears: "يجب أن لا يزيد عدد السنوات عن ",
 
   startDateRequired: "تاريخ البدأ مطلوب",
   endDateRequired: "تاريخ الانتهاء مطلوب",

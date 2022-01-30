@@ -1,6 +1,6 @@
 import { render, fireEvent } from "@testing-library/react";
-import Tabs from "../../components/GenerateSchedule/Tabs";
-import { Tab } from "../../types/Tabs";
+import Tabs from "../../../components/GenerateSchedule/Tabs";
+import { Tab } from "../../../types/Tabs";
 
 describe("Form tabs navigate between tabs", () => {
   it("Should navigate to by years tab", () => {

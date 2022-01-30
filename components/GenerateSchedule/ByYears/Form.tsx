@@ -6,6 +6,9 @@ import Label from "../../Form/Label";
 import FormWrapper from "../Tab/FormWrapper";
 import GenerateButton from "../Tab/GenerateButton";
 
+export const minYearLimit = 1;
+export const maxYearLimit = 100;
+
 function Form() {
   const { numberOfYears, yearsRequired, minYears, maxYears } = useContext(LangContext);
   const {
@@ -32,14 +35,15 @@ function Form() {
         <input
           {...register("yearsNum", {
             required: { value: true, message: yearsRequired },
-            min: { value: 1, message: minYears },
-            max: { value: 100, message: minYears },
+            min: { value: minYearLimit, message: minYears + minYearLimit },
+            max: { value: maxYearLimit, message: maxYears + maxYearLimit },
           })}
           className="form__input"
           id="yearsNum"
           name="yearsNum"
           type="number"
           placeholder="0"
+          data-testid="years-count"
         />
       </div>
       {errorMessageJSX}
