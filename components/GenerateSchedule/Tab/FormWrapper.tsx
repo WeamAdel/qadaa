@@ -1,13 +1,15 @@
+import { MutableRefObject, useRef } from "react";
+
 interface FormWrapperInterface {
   onSubmit: Function;
-  handleSubmit: Function;
   children: JSX.Element[];
+  handleSubmit?: Function;
 }
 
-function FormWrapper({ onSubmit, handleSubmit, children }: FormWrapperInterface) {
+function FormWrapper({ onSubmit, children, handleSubmit }: FormWrapperInterface) {
   return (
     <div className="tabs__form-wrapper">
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
+      <form className="form tabs__form" onSubmit={handleSubmit ? handleSubmit(onSubmit) : onSubmit}>
         {children}
       </form>
     </div>

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { LangContext } from "../../../Providers/Language";
 import { Tab as TabEnum } from "../../../types/Tabs";
 import Tab from "../Tab/Tab";
+import Form from "./Form/Form";
 
 function ByCount({ selectedValue }: { selectedValue: TabEnum }) {
   const { prayersCountHeading, prayersCountDesc } = useContext(LangContext);
@@ -13,7 +14,7 @@ function ByCount({ selectedValue }: { selectedValue: TabEnum }) {
 
   return (
     <Tab head={head} value={TabEnum.byCount} selectedValue={selectedValue}>
-      <div>form here</div>
+      <Form />
     </Tab>
   );
 }

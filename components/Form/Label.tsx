@@ -2,9 +2,10 @@ interface LabelInterface {
   label: string;
   htmlFor: string;
   isRequired?: boolean;
+  classes?: string;
 }
 
-function Label({ label, htmlFor, isRequired = false }: LabelInterface) {
+function Label({ label, htmlFor, isRequired = false, classes = "" }: LabelInterface) {
   const requiredJSX = isRequired ? (
     <span className="form__label-required" aria-label="Required" title="Required">
       *
@@ -12,7 +13,7 @@ function Label({ label, htmlFor, isRequired = false }: LabelInterface) {
   ) : null;
 
   return (
-    <label className="form__label" htmlFor={htmlFor}>
+    <label className={`form__label ${classes}`} htmlFor={htmlFor}>
       {label}
       {requiredJSX}
     </label>
