@@ -1,6 +1,6 @@
 import PrayerCell from "../../PrayersTable/PrayerCell";
 
-function PrayerInfoCells({ name, time }: { name: string; time: string }) {
+function PrayerInfoCells({ time }: { time: string }) {
   return (
     <>
       <PrayerCell>{time}</PrayerCell>
