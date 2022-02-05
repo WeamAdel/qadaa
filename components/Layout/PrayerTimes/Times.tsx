@@ -133,7 +133,7 @@ function Times({ modalTitleId, modalDescId, closeModal, isOpen }: TimesInterface
     const rowCells: { [index: string]: ReactNode } = {};
 
     for (let prayerName in prayerTimes) {
-      rowCells[prayerName] = <PrayerInfoCells time={prayerTimes[prayerName]} />;
+      rowCells[prayerName] = <PrayerInfoCells name={prayerName} time={prayerTimes[prayerName]} />;
     }
 
     return rowCells;
