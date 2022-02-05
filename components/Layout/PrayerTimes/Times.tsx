@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
 import { ReactNode, useContext, useEffect, useState } from "react";
+import { LangContext } from "../../../Providers/Language";
 
 import PrayersTable from "../../PrayersTable/PrayersTable";
 import CloseButton from "./CloseButton";
 import ModalHeader from "./ModalHeader";
-import PrayerInfoCols from "./PrayerInfoCols";
+import PrayerInfoCells from "./PrayerInfoCells";
 import FailureMessage from "./FailureMessage";
 
 import getAPIPrayerTimes from "../../../api/prayer-times";
@@ -13,7 +14,6 @@ import { formatDate, formatHejriDate } from "../../../utils/utils";
 import Language from "../../../types/Language";
 import Prayer from "../../../types/Prayer";
 import { FailureResponse, SuccessResponse } from "../../../types/api/prayer-times";
-import { LangContext } from "../../../Providers/Language";
 import { GeolocationErrorCode } from "../../../types/Geolocation";
 
 interface TimesInterface {
@@ -129,14 +129,14 @@ function Times({ modalTitleId, modalDescId, closeModal, isOpen }: TimesInterface
       });
   }
 
-  function getColumns() {
-    const columns: { [index: string]: ReactNode } = {};
+  function getRowCells() {
+    const rowCells: { [index: string]: ReactNode } = {};
 
     for (let prayerName in prayerTimes) {
-      columns[prayerName] = <PrayerInfoCols name={prayerName} time={prayerTimes[prayerName]} />;
+      rowCells[prayerName] = <PrayerInfoCells name={prayerName} time={prayerTimes[prayerName]} />;
     }
 
-    return columns;
+    return rowCells;
   }
 
   const accessDeinedMsgJSX = locationAccessFailureMsg ? (
@@ -147,7 +147,7 @@ function Times({ modalTitleId, modalDescId, closeModal, isOpen }: TimesInterface
     <FailureMessage message={prayerTimeAPIFailed} onRetry={getPrayerTimes} />
   ) : null;
 
-  const prayersTableJSX = <PrayersTable columns={getColumns()} />;
+  const prayersTableJSX = <PrayersTable rowCells={getRowCells()} />;
 
   const modalBody = accessDeinedMsgJSX || apiFailure || prayersTableJSX;
 

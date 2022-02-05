@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
 import Prayer from "../../types/Prayer";
-import PrayerColumn from "./PrayerColumn";
+import PrayerCell from "./PrayerCell";
 
 function PrayerIcon({ name, children }: { name: Prayer; children: ReactNode }) {
   return (
-    <PrayerColumn classes={`prayers-table__${name}-icon`} type="icon">
+    <PrayerCell classes={`prayers-table__${name}-icon`} type="icon">
       {children}
-    </PrayerColumn>
+    </PrayerCell>
   );
 }
 

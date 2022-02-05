@@ -31,15 +31,14 @@ const prayers: { name: Prayer; icon: ReactNode }[] = [
 ];
 
 interface PrayersTable {
-  columns: { [index: string]: ReactNode };
+  rowCells: { [index: string]: ReactNode };
 }
 
-function PrayersTable({ columns }: PrayersTable) {
-  columns;
+function PrayersTable({ rowCells }: PrayersTable) {
   const rowsJSX = prayers.map(({ name, icon }) => {
     return (
       <PrayerRow key={name} prayerName={name} icon={icon}>
-        {columns[name]}
+        {rowCells[name]}
       </PrayerRow>
     );
   });
