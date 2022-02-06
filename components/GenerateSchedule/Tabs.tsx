@@ -42,7 +42,7 @@ function Tabs({ initTab = TabEnum.Years }: { initTab?: TabEnum }) {
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
-    router.replace(Route.generate + "#" + newValue);
+    router.replace({ pathname: Route.generate, hash: newValue });
   };
 
   const tabTitlesJSX = tabs.map((tab) => {
