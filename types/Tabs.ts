@@ -1,8 +1,10 @@
 export enum Tab {
-  byYears = "years",
-  byTimeRange = "time-range",
-  byCount = "count",
+  Years = "years",
+  TimeRange = "time-range",
+  Count = "count",
 }
+
+export const tabValues = [Tab.Years as string, Tab.TimeRange as string, Tab.Count as string];
 
 export interface TabInterface {
   title: string;

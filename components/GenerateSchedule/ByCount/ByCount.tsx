@@ -13,7 +13,7 @@ function ByCount({ selectedValue }: { selectedValue: TabEnum }) {
   };
 
   return (
-    <Tab head={head} value={TabEnum.byCount} selectedValue={selectedValue}>
+    <Tab head={head} value={TabEnum.Count} selectedValue={selectedValue}>
       <Form />
     </Tab>
   );

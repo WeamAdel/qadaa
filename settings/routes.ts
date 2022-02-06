@@ -1,5 +1,3 @@
-import Language from "../types/Language";
-
 enum Route {
   home = "/",
   about = "/about",

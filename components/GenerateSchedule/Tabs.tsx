@@ -1,31 +1,48 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import { Tab as TabEnum, TabInterface } from "../../types/Tabs";
+import { Tab as TabEnum, TabInterface, tabValues } from "../../types/Tabs";
 import ByYears from "./ByYears/ByYears";
 import ByTimeRage from "./ByTimeRage/ByTimeRage";
 import ByCount from "./ByCount/ByCount";
 import { LangContext } from "../../Providers/Language";
+import { getPageURLHash } from "../../utils/utils";
+import { useRouter } from "next/router";
+import Route from "../../settings/routes";
 
-function Tabs({ initTab = TabEnum.byYears }: { initTab?: TabEnum }) {
+function Tabs({ initTab = TabEnum.Years }: { initTab?: TabEnum }) {
   const [value, setValue]: [TabEnum, Function] = useState(initTab);
   const { years, timeRange, prayersCount } = useContext(LangContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    setCurrentTabFromHash();
+  }, []);
+
+  function setCurrentTabFromHash() {
+    const hash = getPageURLHash();
+
+    if (hash !== -1 && tabValues.includes(hash)) {
+      setValue(hash);
+    }
+  }
 
   const tabs: TabInterface[] = [
-    { title: years, component: <ByYears selectedValue={value} />, value: TabEnum.byYears },
+    { title: years, component: <ByYears selectedValue={value} />, value: TabEnum.Years },
     {
       title: timeRange,
       component: <ByTimeRage selectedValue={value} />,
-      value: TabEnum.byTimeRange,
+      value: TabEnum.TimeRange,
     },
-    { title: prayersCount, component: <ByCount selectedValue={value} />, value: TabEnum.byCount },
+    { title: prayersCount, component: <ByCount selectedValue={value} />, value: TabEnum.Count },
   ];
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
+    router.replace(Route.generate + "#" + newValue);
   };
 
   const tabTitlesJSX = tabs.map((tab) => {

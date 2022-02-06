@@ -13,7 +13,7 @@ function ByTimeRange({ selectedValue }: { selectedValue: TabEnum }) {
   };
 
   return (
-    <Tab head={head} value={TabEnum.byTimeRange} selectedValue={selectedValue}>
+    <Tab head={head} value={TabEnum.TimeRange} selectedValue={selectedValue}>
       <Form />
     </Tab>
   );

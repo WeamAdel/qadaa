@@ -13,7 +13,7 @@ function ByYears({ selectedValue }: { selectedValue: TabEnum }) {
   };
 
   return (
-    <Tab head={head} value={TabEnum.byYears} selectedValue={selectedValue}>
+    <Tab head={head} value={TabEnum.Years} selectedValue={selectedValue}>
       <Form />
     </Tab>
   );

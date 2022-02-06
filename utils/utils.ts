@@ -42,3 +42,23 @@ function getTimeStamp(date: string): number | undefined {
     console.log("Invalid date " + date);
   }
 }
+
+/**
+ * Gets the current page's hash from the URL.
+ *
+ * @returns Returns the current page hash or -1 if no hashes were found.
+ */
+export function getPageURLHash() {
+  if (!windowExists() || !window.location.hash) return -1;
+
+  const hash = window.location.hash;
+
+  return hash.replace("#", "");
+}
+
+/**
+ * Checks if the window object exists or not.
+ */
+export function windowExists() {
+  return typeof window !== "undefined";
+}
