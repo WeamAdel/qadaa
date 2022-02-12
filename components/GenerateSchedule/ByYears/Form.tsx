@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { YearsCountSchedule } from "../../../models/Schedule";
 import { LangContext } from "../../../Providers/Language";
 import ErrorMessage from "../../Form/ErrorMessage";
 import Label from "../../Form/Label";
@@ -19,6 +20,11 @@ function Form() {
 
   function onSubmit(data: any) {
     console.log(data);
+
+    if (!isNaN(data.yearsNum)) {
+      const scheduleData = new YearsCountSchedule(data.yearsNum).generateData();
+      console.log(scheduleData);
+    }
   }
 
   let errorMessageJSX = <></>;

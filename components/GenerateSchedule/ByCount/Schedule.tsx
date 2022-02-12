@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
+import Table from "../PDFTable/Table";
 
-import Page from "../components/Layout/Page/Page";
+interface Schedule {
+  data: [];
+}
 
-function Test() {
+function Schedule({ data }: Schedule) {
   const [doc, setDoc]: [any, any] = useState();
 
   useEffect(() => {
@@ -41,36 +44,12 @@ function Test() {
     }
   }
 
-  const rowsJSX = [];
-
-  for (let i = 0; i < 30; i++) {
-    rowsJSX.push(
-      <tr>
-        <th>{i + 1}</th>
-        <td>Fajr</td>
-        <td>Count</td>
-        <td data-done="true"></td>
-      </tr>
-    );
-  }
-
   return (
-    <Page title="PDF">
-      <h1>Test PDF</h1>
+    <div>
+      <Table id="table" />
       <button onClick={save}>Save</button>
-      <table id="table" style={{ backgroundColor: "violet", textAlign: "center" }}>
-        <thead>
-          <tr style={{ backgroundColor: "black" }}>
-            <td style={{ padding: "10px 12px", height: "36px" }}>N</td>
-            <td style={{ padding: "10px 12px", height: "36px" }}>Prayer</td>
-            <td style={{ padding: "10px 12px", height: "36px" }}>Count</td>
-            <td style={{ padding: "10px 12px", height: "36px" }}>Done</td>
-          </tr>
-        </thead>
-        <tbody>{rowsJSX}</tbody>
-      </table>
-    </Page>
+    </div>
   );
 }
 
-export default Test;
+export default Schedule;
