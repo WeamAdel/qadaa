@@ -35,5 +35,5 @@ export function appendPrayerIcon(doc: any, data: any, prayer: Prayer) {
 }
 
 export function appendImage({ base64Image, doc, data, x, y, type = "PNG" }: AppendImage) {
-  doc.addImage(base64Image, type, x || data.cell.x + 20, y || data.cell.y, 5, 5);
+  doc.addImage(base64Image, type, x || data.cell.x, y || data.cell.y, 5, 5);
 }

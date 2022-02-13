@@ -1,21 +1,24 @@
-import Prayer from "../../../types/Prayer";
+import { ScheduleRow } from "../../../types/Schedule";
+
 import TableBody from "./TableBody";
 import TableHead from "./TableHead";
 
 interface Table {
   id: string;
+  prayers: Array<ScheduleRow>;
+  title?: string;
 }
 
-function Table({ id }: Table) {
+function Table({ id, prayers, title }: Table) {
   return (
-    <table id={id} className="schedule__table" aria-hidden="true" style={{ textAlign: "center" }}>
-      <TableHead />
-      <TableBody
-        rows={[
-          { count: 1, prayer: Prayer.fajr },
-          { count: 2, prayer: Prayer.dhuhr },
-        ]}
-      />
+    <table
+      id={id}
+      className="schedule__table"
+      aria-hidden="true"
+      style={{ textAlign: "center", textTransform: "capitalize", fontFamily: "sans-serif" }}
+    >
+      <TableHead title={title} />
+      <TableBody rows={prayers} />
     </table>
   );
 }

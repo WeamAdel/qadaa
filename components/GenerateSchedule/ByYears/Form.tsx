@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { YearsCountSchedule } from "../../../models/Schedule";
 import { LangContext } from "../../../Providers/Language";
 import ErrorMessage from "../../Form/ErrorMessage";
 import Label from "../../Form/Label";
@@ -10,7 +9,7 @@ import GenerateButton from "../Tab/GenerateButton";
 export const minYearLimit = 1;
 export const maxYearLimit = 100;
 
-function Form() {
+function Form({ generateSchedule }: { generateSchedule: (years: number) => void }) {
   const { numberOfYears, yearsRequired, minYears, maxYears } = useContext(LangContext);
   const {
     register,
@@ -22,8 +21,7 @@ function Form() {
     console.log(data);
 
     if (!isNaN(data.yearsNum)) {
-      const scheduleData = new YearsCountSchedule(data.yearsNum).generateData();
-      console.log(scheduleData);
+      generateSchedule(data.yearsNum);
     }
   }
 

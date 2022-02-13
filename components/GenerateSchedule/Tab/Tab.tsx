@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { Tab as TabEnum, TabHeadInterface } from "../../../types/Tabs";
 import TabBody from "./TabBody";
 import TabHead from "./TabHead";
@@ -6,7 +7,7 @@ interface TabInterface {
   head: TabHeadInterface;
   value: TabEnum;
   selectedValue: TabEnum;
-  children: JSX.Element;
+  children: ReactNode;
 }
 
 function Tab({ head, value, selectedValue, children }: TabInterface) {

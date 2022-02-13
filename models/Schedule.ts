@@ -7,11 +7,13 @@ export interface YearsCountSchedule {
 
 export interface ScheduleYearData {
   title: string;
-  prayers: Array<Array<ScheduleDayData>>;
+  count: number;
+  prayers: Array<ScheduleDayData>;
 }
 
 export interface ScheduleDayData {
   title: string;
+  count: number;
   prayers: Array<ScheduleRow>;
 }
 
@@ -38,8 +40,7 @@ export class YearsCountSchedule implements YearsCountSchedule {
         count += 5;
       }
 
-      //@ts-ignore
-      const yearData: ScheduleYearData = { title, prayers };
+      const yearData: ScheduleYearData = { title, prayers, count: i };
 
       data.push(yearData);
     }
@@ -59,5 +60,5 @@ function createDayPrayers(startCount: number, dayNumber: number): ScheduleDayDat
   dayPrayers.push({ count: ++count, prayer: Prayer.maghrib });
   dayPrayers.push({ count: ++count, prayer: Prayer.isha });
 
-  return { title: dayTitle, prayers: dayPrayers };
+  return { title: dayTitle, prayers: dayPrayers, count: dayNumber };
 }
