@@ -6,12 +6,10 @@ function TableHead({ title }: { title?: string }) {
           <td style={{ textAlign: "left", border: "none", marginBottom: "2px" }}>{title}</td>
           <td style={{ border: "none" }}></td>
           <td style={{ border: "none" }}></td>
-          <td style={{ border: "none" }}></td>
         </tr>
       ) : null}
       <tr style={{ backgroundColor: "black", color: "white" }}>
         <td>N</td>
-        <td></td>
         <td>Prayer</td>
         <td>Done</td>
       </tr>

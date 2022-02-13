@@ -9,16 +9,8 @@ function TableBody({ rows }: TableBody) {
     return (
       <tr key={`prayer-cell-${row.count}`}>
         <th style={{ backgroundColor: "white", color: "black" }}>{row.count}</th>
-        <td
-          style={{ backgroundColor: "white", color: "black" }}
-          data-prayer-icon="true"
-          data-prayer={row.prayer}
-        ></td>
         <td style={{ backgroundColor: "white", color: "black" }}>{row.prayer}</td>
-        <td
-          style={{ backgroundColor: "white", color: "black", width: "30px" }}
-          data-done="true"
-        ></td>
+        <td style={{ backgroundColor: "white", color: "black", width: "30px" }}></td>
       </tr>
     );
   });
