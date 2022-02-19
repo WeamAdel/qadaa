@@ -154,7 +154,7 @@ function Times({ modalTitleId, modalDescId, closeModal, isOpen }: TimesInterface
   return (
     <div>
       <CloseButton closeModal={closeModal} />
-      <div className="prayer-times__times">
+      <div className="prayer-times__times modal">
         <ModalHeader
           modalTitleId={modalTitleId}
           hijriDate={dates.hijriDate}

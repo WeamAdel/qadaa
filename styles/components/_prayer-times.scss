@@ -50,15 +50,6 @@
 }
 
 .prayer-times__times {
-  background-color: var(--secondary-bg);
-  width: min(90vw, 300px);
-  border-radius: 2px;
-  box-shadow: 0 0 7rem rgb(0 0 0 / 10%);
-  padding: 32px 24px;
-  position: relative;
-  overflow: auto;
-  max-height: 80vh;
-
   .prayers-table {
     width: 100%;
   }

@@ -8,10 +8,12 @@ interface PrimaryIconButtonInterface {
 }
 
 function PrimaryIconButton({ title, children, onClick }: PrimaryIconButtonInterface) {
-  <button onClick={onClick}>
-    {title}
-    <IconWrapper>{children}</IconWrapper>
-  </button>;
+  return (
+    <button className={`button button--primary button--icon`} onClick={onClick}>
+      <IconWrapper>{children}</IconWrapper>
+      {title}
+    </button>
+  );
 }
 
 export default PrimaryIconButton;

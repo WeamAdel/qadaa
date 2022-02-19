@@ -5,3 +5,30 @@
 .prayer-count__input {
   height: 26px;
 }
+
+.schedule__table {
+  display: none;
+}
+
+.generate-modal {
+  text-align: center;
+  font-weight: var(--fw-med);
+  min-height: max(300px, min(50vh, 200px));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.generate-modal__icon {
+  margin-left: auto;
+  margin-right: auto;
+  svg {
+    font-size: max(min(4vw, 52px), 36px);
+  }
+}
+
+.generate-modal__desc {
+  margin-top: 24px;
+  margin-bottom: 32px;
+  font-size: max(min(1.8vw, 20px), 16px);
+}

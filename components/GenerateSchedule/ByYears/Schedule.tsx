@@ -1,16 +1,20 @@
-import { ReactNode, useEffect, useState } from "react";
+import { MutableRefObject, ReactNode, useEffect, useRef, useState } from "react";
+import { ScheduleYearData } from "../../../models/Schedule";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
+
 import Table from "../PDFTable/Table";
-import { ScheduleYearData } from "../../../models/Schedule";
 
 interface Schedule {
   data: Array<ScheduleYearData>;
+  updateGenerated: () => void;
+  setSaveButton: (button: HTMLButtonElement) => void;
 }
 
-function Schedule({ data }: Schedule) {
+function Schedule({ data, updateGenerated, setSaveButton }: Schedule) {
   const [doc, setDoc]: [any, any] = useState();
   const [tables, setTables]: [Array<ReactNode> | null, any] = useState(null);
+  const saveBtnRef = useRef() as MutableRefObject<HTMLButtonElement>;
 
   useEffect(() => {
     if (!doc) {
@@ -46,6 +50,8 @@ function Schedule({ data }: Schedule) {
           addDayTable(id);
         }
       }
+
+      updateGenerated();
     }
 
     function addDayTable(tableId: string) {
@@ -55,7 +61,13 @@ function Schedule({ data }: Schedule) {
         theme: "grid",
       });
     }
-  }, [tables, data, doc]);
+  }, [tables, data, doc, updateGenerated]);
+
+  useEffect(() => {
+    if (saveBtnRef.current) {
+      setSaveButton(saveBtnRef.current);
+    }
+  }, [saveBtnRef.current]);
 
   async function save() {
     if (doc) {
@@ -66,7 +78,9 @@ function Schedule({ data }: Schedule) {
   return (
     <div>
       {tables ? tables : <></>}
-      <button onClick={save}>Save</button>
+      <button onClick={save} ref={saveBtnRef}>
+        Save
+      </button>
     </div>
   );
 }
