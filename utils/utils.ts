@@ -46,10 +46,10 @@ function getTimeStamp(date: string): number | undefined {
 /**
  * Gets the current page's hash from the URL.
  *
- * @returns Returns the current page hash or -1 if no hashes were found.
+ * @returns Returns the current page hash or undefined if no hashes were found.
  */
 export function getPageURLHash() {
-  if (!windowExists() || !window.location.hash) return -1;
+  if (!windowExists() || !window.location.hash) return;
 
   const hash = window.location.hash;
 

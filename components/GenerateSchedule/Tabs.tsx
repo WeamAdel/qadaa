@@ -15,18 +15,23 @@ import Route from "../../settings/routes";
 
 function Tabs({ initTab = TabEnum.Years }: { initTab?: TabEnum }) {
   const [value, setValue]: [TabEnum, Function] = useState(initTab);
+  const [hash, setHash]: [TabEnum | -1 | null, Function] = useState(null);
   const { years, timeRange, prayersCount } = useContext(LangContext);
   const router = useRouter();
 
   useEffect(() => {
-    setCurrentTabFromHash();
-  }, []);
+    if (!hash && router) {
+      setCurrentTabFromHash();
+    }
+  }, [router, hash]);
 
   function setCurrentTabFromHash() {
     const hash = getPageURLHash();
 
-    if (hash !== -1 && tabValues.includes(hash)) {
+    if (hash && tabValues.includes(hash)) {
       setValue(hash);
+    } else {
+      setHash(-1);
     }
   }
 
