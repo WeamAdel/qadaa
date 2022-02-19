@@ -1,20 +1,35 @@
 import { Box, Modal } from "@mui/material";
+import { useState } from "react";
+import CloseButton from "../../Buttons/CloseButton";
 import Download from "./Download";
 import Loading from "./Loading";
 
 interface GenerateModal {
-  open: boolean;
   isGenerated: boolean;
-  save: () => void;
+  download: () => void;
+  resetSchedule: () => void;
 }
 
-function GenerateModal({ open, isGenerated, save }: GenerateModal) {
-  console.log("is generated? ", isGenerated);
+function GenerateModal({ isGenerated, download, resetSchedule }: GenerateModal) {
+  const [isOpen, setIsOpen] = useState(true);
+
+  function closeModal() {
+    setIsOpen(false);
+    resetSchedule();
+  }
+
   return (
-    <Modal open={open}>
+    <Modal open={isOpen}>
       <Box>
-        <div className="generate-modal modal">
-          {isGenerated ? <Download save={save} /> : <Loading />}
+        <div>
+          <CloseButton
+            closeModal={closeModal}
+            title="Close download modal"
+            testid="generate-modal-close-btn"
+          />
+          <div className="generate-modal modal">
+            {isGenerated ? <Download download={download} /> : <Loading />}
+          </div>
         </div>
       </Box>
     </Modal>

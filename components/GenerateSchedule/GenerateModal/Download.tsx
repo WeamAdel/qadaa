@@ -3,17 +3,17 @@ import PrimaryIconButton from "../../Buttons/PrimaryIconButton";
 import Icon from "../../Icon/Icon";
 
 interface Download {
-  save: () => void;
+  download: () => void;
 }
 
-function Download({ save }: Download) {
+function Download({ download }: Download) {
   return (
     <div className="generate-modal__content generate-modal__content--download" role="alert">
       <Icon classes="generate-modal__icon">
         <CheckCircleRounded fontSize="large" />
       </Icon>
       <p className="generate-modal__desc">Schedule Generated Successfully</p>
-      <PrimaryIconButton title="Download PDF" onClick={save}>
+      <PrimaryIconButton title="Download PDF" onClick={download}>
         <DownloadRounded fontSize="small" />
       </PrimaryIconButton>
     </div>

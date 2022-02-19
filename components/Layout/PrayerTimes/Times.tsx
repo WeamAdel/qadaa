@@ -3,7 +3,7 @@ import { ReactNode, useContext, useEffect, useState } from "react";
 import { LangContext } from "../../../Providers/Language";
 
 import PrayersTable from "../../PrayersTable/PrayersTable";
-import CloseButton from "./CloseButton";
+import CloseButton from "../../Buttons/CloseButton";
 import ModalHeader from "./ModalHeader";
 import PrayerInfoCells from "./PrayerInfoCells";
 import FailureMessage from "./FailureMessage";
@@ -153,7 +153,12 @@ function Times({ modalTitleId, modalDescId, closeModal, isOpen }: TimesInterface
 
   return (
     <div>
-      <CloseButton closeModal={closeModal} />
+      <CloseButton
+        title="Close prayer times"
+        classes="prayer-times__close-btn"
+        testid="prayer-times-close-btn"
+        closeModal={closeModal}
+      />
       <div className="prayer-times__times modal">
         <ModalHeader
           modalTitleId={modalTitleId}

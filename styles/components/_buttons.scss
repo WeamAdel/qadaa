@@ -66,7 +66,7 @@
   color: var(--primary-fg);
   background-color: var(--secondary-bg);
   border: none;
-  margin-bottom: 32px;
+  margin-bottom: max(min(1.76vw, 32px), 16px);
   margin-inline-start: auto;
   display: flex;
   align-items: center;

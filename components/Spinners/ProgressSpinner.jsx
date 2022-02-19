@@ -1,6 +1,6 @@
-function ProgressSpinner() {
+function ProgressSpinner({ classes = "" }) {
   return (
-    <div className="progress-spinner">
+    <div className={`progress-spinner ${classes}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="40.333"

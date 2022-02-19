@@ -1,20 +1,23 @@
-import { MutableRefObject, ReactNode, useEffect, useRef, useState } from "react";
-import { ScheduleYearData } from "../../../models/Schedule";
+import { ReactNode, useEffect, useState } from "react";
+import { ScheduleYearData, YearsCountSchedule } from "../../../models/Schedule";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 
 import Table from "../PDFTable/Table";
+import GenerateModal from "../GenerateModal/GenerateModal";
 
 interface Schedule {
-  data: Array<ScheduleYearData>;
-  updateGenerated: () => void;
-  setSaveButton: (button: HTMLButtonElement) => void;
+  years: number;
+  resetForm: () => void;
 }
 
-function Schedule({ data, updateGenerated, setSaveButton }: Schedule) {
-  const [doc, setDoc]: [any, any] = useState();
+function Schedule({ years, resetForm }: Schedule) {
+  const [doc, setDoc]: [any, any] = useState(null);
   const [tables, setTables]: [Array<ReactNode> | null, any] = useState(null);
-  const saveBtnRef = useRef() as MutableRefObject<HTMLButtonElement>;
+  const [data, setData]: [Array<ScheduleYearData> | null, any] = useState(null);
+  const [isGenerated, setIsGenerated] = useState(false);
+
+  console.log(data);
 
   useEffect(() => {
     if (!doc) {
@@ -24,26 +27,41 @@ function Schedule({ data, updateGenerated, setSaveButton }: Schedule) {
   }, [doc]);
 
   useEffect(() => {
-    if (!tables) {
+    if (years && !data) {
+      setTimeout(() => {
+        generateScheduleData();
+      }, 1500);
+    }
+
+    function generateScheduleData() {
+      setData(new YearsCountSchedule(years).generateData());
+    }
+  }, [years, data]);
+
+  useEffect(() => {
+    if (!tables && data) {
       setTables(createTables());
     }
 
-    function createTables(): Array<ReactNode> {
-      const tablesJSX = [];
+    function createTables(): Array<ReactNode> | undefined {
+      if (data) {
+        const tablesJSX = [];
 
-      for (let year of data) {
-        for (let day of year.prayers) {
-          const id = `y-${year.count}-d-${day.count}`;
-          tablesJSX.push(<Table key={id} id={id} prayers={day.prayers} title={day.title} />);
+        for (let year of data) {
+          for (let day of year.prayers) {
+            const id = `y-${year.count}-d-${day.count}`;
+            tablesJSX.push(<Table key={id} id={id} prayers={day.prayers} title={day.title} />);
+          }
         }
-      }
 
-      return tablesJSX;
+        return tablesJSX;
+      }
     }
   }, [doc, data, tables]);
 
   useEffect(() => {
-    if (tables && doc) {
+    if (tables && doc && data) {
+      //@ts-ignore
       for (let year of data) {
         for (let day of year.prayers) {
           const id = `y-${year.count}-d-${day.count}`;
@@ -51,7 +69,7 @@ function Schedule({ data, updateGenerated, setSaveButton }: Schedule) {
         }
       }
 
-      updateGenerated();
+      setIsGenerated(true);
     }
 
     function addDayTable(tableId: string) {
@@ -59,28 +77,29 @@ function Schedule({ data, updateGenerated, setSaveButton }: Schedule) {
         html: "#" + tableId,
         useCss: true,
         theme: "grid",
+        pageBreak: "avoid",
       });
     }
-  }, [tables, data, doc, updateGenerated]);
+  }, [tables, data, doc]);
 
-  useEffect(() => {
-    if (saveBtnRef.current) {
-      setSaveButton(saveBtnRef.current);
-    }
-  }, [saveBtnRef.current]);
+  function resetSchedule() {
+    setDoc(null);
+    setTables(null);
+    setData(null);
+    setIsGenerated(false);
+    resetForm();
+  }
 
-  async function save() {
+  async function download() {
     if (doc) {
-      doc.save("table.pdf");
+      doc.save("qadaa-schedule.pdf");
     }
   }
 
   return (
     <div>
-      {tables ? tables : <></>}
-      <button onClick={save} ref={saveBtnRef}>
-        Save
-      </button>
+      {tables ? tables : null}
+      <GenerateModal isGenerated={isGenerated} download={download} resetSchedule={resetSchedule} />
     </div>
   );
 }

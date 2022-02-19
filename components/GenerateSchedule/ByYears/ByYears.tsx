@@ -10,17 +10,7 @@ import GenerateModal from "../GenerateModal/GenerateModal";
 
 function ByYears({ selectedValue }: { selectedValue: TabEnum }) {
   const { yearsHeading, yearsDesc } = useContext(LangContext);
-  const [scheduleData, setScheduleData]: [Array<ScheduleYearData> | null, any] = useState(null);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [isGenerated, setIsGenerated] = useState(false);
-  const [saveButton, setSaveButton]: [HTMLButtonElement | undefined, any] = useState();
   const [years, setYears]: [number | null, any] = useState(null);
-
-  useEffect(() => {
-    if (years && !isNaN(years)) {
-      setScheduleData(new YearsCountSchedule(years).generateData());
-    }
-  }, [years]);
 
   const head = {
     heading: yearsHeading,
@@ -28,35 +18,17 @@ function ByYears({ selectedValue }: { selectedValue: TabEnum }) {
   };
 
   function generateSchedule(years: number) {
-    setIsGenerating(true);
     setYears(years);
   }
 
-  function updateGenerated() {
-    setIsGenerated(true);
-  }
-
-  console.log("is generating? ", isGenerating);
-
-  function save() {
-    if (saveButton) {
-      saveButton.click();
-    }
+  function resetForm() {
+    setYears(null);
   }
 
   return (
     <Tab head={head} value={TabEnum.Years} selectedValue={selectedValue}>
       <Form generateSchedule={generateSchedule} />
-      {scheduleData ? (
-        <Schedule
-          data={scheduleData}
-          updateGenerated={updateGenerated}
-          setSaveButton={setSaveButton}
-        />
-      ) : (
-        <></>
-      )}
-      <GenerateModal open={isGenerating} isGenerated={isGenerated} save={save} />
+      {years ? <Schedule years={years} resetForm={resetForm} /> : null}
     </Tab>
   );
 }
