@@ -1,13 +1,19 @@
 import { useContext, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { LangContext } from "../../../Providers/Language";
+import { DateRange } from "../../../types/Schedule";
 import { DateComparer, dateComparer } from "../../../utils/utils";
+
 import ErrorMessage from "../../Form/ErrorMessage";
 import Label from "../../Form/Label";
 import FormWrapper from "../Tab/FormWrapper";
 import GenerateButton from "../Tab/GenerateButton";
 
-function Form() {
+interface Form {
+  generateSchedule: (dateRange: DateRange) => void;
+}
+
+function Form({ generateSchedule }: Form) {
   const { startDate, endDate, startDateRequired, endDateRequired, rangeError } =
     useContext(LangContext);
   let startDateRef: React.RefObject<HTMLInputElement> = useRef(null);
@@ -17,32 +23,30 @@ function Form() {
     formState: { errors },
   } = useForm();
 
-  const startDateRegister = register("rangeStart", {
+  const startDateRegister = register("startDate", {
     required: { value: true, message: startDateRequired },
   });
-  const endDateRegister = register("rangeEnd", {
+  const endDateRegister = register("endDate", {
     validate: endDateValidator,
     required: { value: true, message: endDateRequired },
   });
 
-  function onSubmit(data: any) {
-    console.log(data);
+  function onSubmit(data: DateRange) {
+    generateSchedule(data);
   }
 
   let startErrorMessageJSX = <></>;
   let endErrorMessageJSX = <></>;
 
   if (errors) {
-    if (errors.rangeStart) {
+    if (errors.startDate) {
       //@ts-ignore
-      startErrorMessageJSX = <ErrorMessage message={errors.rangeStart.message} />;
+      startErrorMessageJSX = <ErrorMessage message={errors.startDate.message} />;
     }
 
-    if (errors.rangeEnd) {
-      console.log("oj");
-
+    if (errors.endDate) {
       //@ts-ignore
-      endErrorMessageJSX = <ErrorMessage message={errors.rangeEnd.message} />;
+      endErrorMessageJSX = <ErrorMessage message={errors.endDate.message} />;
     }
   }
 
@@ -61,14 +65,14 @@ function Form() {
     <FormWrapper onSubmit={onSubmit} handleSubmit={handleSubmit}>
       <div className="range__dates-wrapper">
         <div className="form__field range__start-field">
-          <Label label={startDate} htmlFor="rangeStart" isRequired={true} />
+          <Label label={startDate} htmlFor="startDate" isRequired={true} />
           <input
             {...startDateRegister}
             className="form__input"
-            id="rangeStart"
-            name="rangeStart"
+            id="startDate"
+            name="startDate"
             type="date"
-            aria-invalid={Boolean(errors?.rangeStart)}
+            aria-invalid={Boolean(errors?.startDate)}
             ref={(e) => {
               startDateRegister.ref(e);
               //@ts-ignore
@@ -80,13 +84,13 @@ function Form() {
         </div>
 
         <div className="form__field range__end-field">
-          <Label label={endDate} htmlFor="rangeEnd" isRequired={true} />
+          <Label label={endDate} htmlFor="endDate" isRequired={true} />
           <input
             {...endDateRegister}
-            aria-invalid={Boolean(errors?.rangeEnd)}
+            aria-invalid={Boolean(errors?.endDate)}
             className="form__input"
-            id="rangeEnd"
-            name="rangeEnd"
+            id="endDate"
+            name="endDate"
             type="date"
             data-testid="range-end"
           />

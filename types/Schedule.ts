@@ -4,3 +4,5 @@ export interface ScheduleRow {
   count: number;
   prayer: Prayer;
 }
+
+export type DateRange = { startDate: string; endDate: string };

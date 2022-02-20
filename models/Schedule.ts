@@ -1,5 +1,5 @@
 import Prayer from "../types/Prayer";
-import { ScheduleRow } from "../types/Schedule";
+import { DateRange, ScheduleRow } from "../types/Schedule";
 
 export interface YearsCountSchedule {
   years: number;
@@ -17,6 +17,11 @@ export interface ScheduleDayData {
   prayers: Array<ScheduleRow>;
 }
 
+export interface TimeRangeSchedule {
+  startDate: string;
+  endDate: string;
+}
+
 export class YearsCountSchedule implements YearsCountSchedule {
   years;
 
@@ -24,6 +29,9 @@ export class YearsCountSchedule implements YearsCountSchedule {
     this.years = years;
   }
 
+  /**
+   * Generates the prayers data list.
+   */
   generateData(): Array<ScheduleYearData> {
     let count = 0;
     const data = [];
@@ -49,6 +57,49 @@ export class YearsCountSchedule implements YearsCountSchedule {
   }
 }
 
+export class TimeRangeSchedule implements TimeRangeSchedule {
+  startDate;
+  endDate;
+
+  constructor(dateRange: DateRange) {
+    this.startDate = dateRange.startDate;
+    this.endDate = dateRange.endDate;
+  }
+
+  /**
+   * Generates the prayers data list.
+   */
+  generateData(): Array<ScheduleDayData> {
+    const days = this.getDaysCount();
+    let count = 0;
+    const data = [];
+
+    for (let j = 1; j <= days; j++) {
+      data.push(createDayPrayers(count, j));
+      count += 5;
+    }
+
+    return data;
+  }
+
+  /**
+   * Gets the days count between the start and end dates.
+   */
+  getDaysCount(): number {
+    const startTimeStamp = new Date(this.startDate).getTime();
+    const endTimeStamp = new Date(this.endDate).getTime();
+
+    return Math.floor((endTimeStamp - startTimeStamp) / (1000 * 60 * 60 * 24)) + 1;
+  }
+}
+
+/**
+ * Creates each day prayer's.
+ *
+ * @param startCount The start count of the prayer,
+ * it represents the number in the generated list of prayers.
+ * @param dayNumber Represents the day number in the generated list.
+ */
 function createDayPrayers(startCount: number, dayNumber: number): ScheduleDayData {
   const dayTitle = "Day " + dayNumber;
   const dayPrayers = [];
