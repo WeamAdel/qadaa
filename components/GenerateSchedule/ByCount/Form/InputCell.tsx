@@ -23,7 +23,7 @@ function InputCell({ prayerName, validate }: InputCell) {
       <input
         value={value}
         id={id}
-        name={id}
+        name={prayerName}
         data-testid={id}
         type="number"
         className="form__input prayer-count__input"

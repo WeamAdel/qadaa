@@ -1,6 +1,7 @@
-import { ReactNode, Ref, useContext, useState } from "react";
+import { ReactNode, useContext, useState } from "react";
 import { LangContext } from "../../../../Providers/Language";
 import Prayer from "../../../../types/Prayer";
+import { PrayerCount } from "../../../../types/Schedule";
 
 import ErrorMessage from "../../../Form/ErrorMessage";
 import PrayersTable from "../../../PrayersTable/PrayersTable";
@@ -10,7 +11,11 @@ import FormRowCells from "./FormRowCells";
 
 export const perPrayerMaxCount = 500;
 
-function Form() {
+interface Form {
+  generateSchedule: (prayersCount: PrayerCount) => void;
+}
+
+function Form({ generateSchedule }: Form) {
   //   const { numberOfYears, yearsRequired, minYears, maxYears } = useContext(LangContext);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isTouched, setIsTouched] = useState(false);
@@ -19,6 +24,36 @@ function Form() {
   function onSubmit(e: SubmitEvent) {
     e.preventDefault();
     setIsTouched(true);
+
+    if (isValid() && e.target) {
+      const data = getFormData(e.target as HTMLFormElement);
+      generateSchedule(data);
+    }
+  }
+
+  function getFormData(form: HTMLFormElement) {
+    const data: FormData = new FormData(form);
+    const prayers: PrayerCount = {
+      [Prayer.fajr]: 0,
+      [Prayer.dhuhr]: 0,
+      [Prayer.asr]: 0,
+      [Prayer.maghrib]: 0,
+      [Prayer.isha]: 0,
+    };
+
+    for (let prayer of data) {
+      const prayerName = prayer[0] as Prayer;
+
+      if (prayerName in Prayer) {
+        prayers[prayerName] = +prayer[1];
+      }
+    }
+
+    return prayers;
+  }
+
+  function isValid() {
+    return !(maxCountExceeded || isEmpty);
   }
 
   function getFormRowCells() {
