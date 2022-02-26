@@ -1,12 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Tab as TabEnum } from "../../../types/Tabs";
 import { LangContext } from "../../../Providers/Language";
-import { ScheduleYearData, YearsCountSchedule } from "../../../models/Schedule";
 
 import Form from "./Form";
 import Tab from "../Tab/Tab";
 import Schedule from "./Schedule";
-import GenerateModal from "../GenerateModal/GenerateModal";
 
 function ByYears({ selectedValue }: { selectedValue: TabEnum }) {
   const { yearsHeading, yearsDesc } = useContext(LangContext);
