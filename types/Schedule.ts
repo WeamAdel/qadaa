@@ -7,6 +7,6 @@ export interface ScheduleRow {
 
 export type DateRange = { startDate: string; endDate: string };
 
-export type PrayerCount = {
+export type PrayersCount = {
   [key in Prayer]: number;
 };

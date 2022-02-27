@@ -1,7 +1,7 @@
 import { ReactNode, useContext, useState } from "react";
 import { LangContext } from "../../../../Providers/Language";
 import Prayer from "../../../../types/Prayer";
-import { PrayerCount } from "../../../../types/Schedule";
+import { PrayersCount } from "../../../../types/Schedule";
 
 import ErrorMessage from "../../../Form/ErrorMessage";
 import PrayersTable from "../../../PrayersTable/PrayersTable";
@@ -12,7 +12,7 @@ import FormRowCells from "./FormRowCells";
 export const perPrayerMaxCount = 500;
 
 interface Form {
-  generateSchedule: (prayersCount: PrayerCount) => void;
+  generateSchedule: (prayersCount: PrayersCount) => void;
 }
 
 function Form({ generateSchedule }: Form) {
@@ -33,7 +33,7 @@ function Form({ generateSchedule }: Form) {
 
   function getFormData(form: HTMLFormElement) {
     const data: FormData = new FormData(form);
-    const prayers: PrayerCount = {
+    const prayers: PrayersCount = {
       [Prayer.fajr]: 0,
       [Prayer.dhuhr]: 0,
       [Prayer.asr]: 0,
