@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from "react";
-import { PrayersCountSchedule, ScheduleDayData, TimeRangeSchedule } from "../../../models/Schedule";
+import { PrayersCountSchedule, SchedulePrayerData } from "../../../models/Schedule";
 import { PrayersCount } from "../../../types/Schedule";
 
 import { jsPDF } from "jspdf";
@@ -13,10 +13,12 @@ interface Schedule {
   resetForm: () => void;
 }
 
+const scheduleId = "prayers-count-schedule";
+
 function Schedule({ prayersCount, resetForm }: Schedule) {
   const [doc, setDoc]: [any, any] = useState(null);
   const [tables, setTables]: [Array<ReactNode> | null, any] = useState(null);
-  const [data, setData]: [Array<ScheduleDayData> | null, any] = useState(null);
+  const [data, setData]: [Array<SchedulePrayerData> | null, any] = useState(null);
   const [isGenerated, setIsGenerated] = useState(false);
 
   useEffect(() => {
@@ -38,45 +40,34 @@ function Schedule({ prayersCount, resetForm }: Schedule) {
     }
   }, [prayersCount, data]);
 
-  // useEffect(() => {
-  //   if (!tables && data) {
-  //     setTables(createTables());
-  //   }
+  useEffect(() => {
+    //@ts-ignore
+    if (!tables && data && data) {
+      setTables(createTables());
+    }
 
-  //   function createTables(): Array<ReactNode> | undefined {
-  //     if (data) {
-  //       const tablesJSX = [];
+    function createTables(): ReactNode | undefined {
+      if (data) {
+        return <Table key={scheduleId} id={scheduleId} prayers={data} title={"Prayers"} />;
+      }
+    }
+  }, [doc, data, tables]);
 
-  //       for (let day of data) {
-  //         const id = `d-${day.count}`;
-  //         tablesJSX.push(<Table key={id} id={id} prayers={day.prayers} title={day.title} />);
-  //       }
+  useEffect(() => {
+    if (tables && doc && data) {
+      addDayTable(scheduleId);
+      setIsGenerated(true);
+    }
 
-  //       return tablesJSX;
-  //     }
-  //   }
-  // }, [doc, data, tables]);
-
-  // useEffect(() => {
-  //   if (tables && doc && data) {
-  //     //@ts-ignore
-  //     for (let day of data) {
-  //       const id = `d-${day.count}`;
-  //       addDayTable(id);
-  //     }
-
-  //     setIsGenerated(true);
-  //   }
-
-  //   function addDayTable(tableId: string) {
-  //     doc.autoTable({
-  //       html: "#" + tableId,
-  //       useCss: true,
-  //       theme: "grid",
-  //       pageBreak: "avoid",
-  //     });
-  //   }
-  // }, [tables, data, doc]);
+    function addDayTable(tableId: string) {
+      doc.autoTable({
+        html: "#" + tableId,
+        useCss: true,
+        theme: "grid",
+        // pageBreak: "avoid",
+      });
+    }
+  }, [tables, data, doc]);
 
   function resetSchedule() {
     setDoc(null);

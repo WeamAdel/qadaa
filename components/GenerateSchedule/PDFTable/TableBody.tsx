@@ -1,7 +1,7 @@
-import { ScheduleRow } from "../../../types/Schedule";
+import { SchedulePrayerData } from "../../../models/Schedule";
 
 export interface TableBody {
-  rows: Array<ScheduleRow>;
+  rows: Array<SchedulePrayerData>;
 }
 
 function TableBody({ rows }: TableBody) {

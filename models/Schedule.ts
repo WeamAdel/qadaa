@@ -1,5 +1,5 @@
 import Prayer from "../types/Prayer";
-import { DateRange, PrayersCount, ScheduleRow } from "../types/Schedule";
+import { DateRange, PrayersCount } from "../types/Schedule";
 
 export interface YearsCountSchedule {
   years: number;
@@ -14,11 +14,11 @@ export interface ScheduleYearData {
 export interface ScheduleDayData {
   title: string;
   count: number;
-  prayers: Array<ScheduleRow>;
+  prayers: Array<SchedulePrayerData>;
 }
 
 export interface SchedulePrayerData {
-  title: string;
+  prayer: string;
   count: number;
 }
 
@@ -112,17 +112,17 @@ export class PrayersCountSchedule implements PrayersCountSchedule {
   /**
    * Generates the prayers data list.
    */
-  generateData(): Array<SchedulePrayerData> {
+  generateData(): Array<SchedulePrayerData> | null {
     let count = 0;
     const data: Array<SchedulePrayerData> = [];
 
     for (let key in this.prayersCount) {
       for (let i = 0; i < this.prayersCount[key as Prayer]; i++) {
-        data.push({ title: key, count: ++count });
+        data.push({ prayer: key, count: ++count });
       }
     }
 
-    return data;
+    return data.length ? data : null;
   }
 }
 
