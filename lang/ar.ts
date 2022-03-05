@@ -43,6 +43,10 @@ const AR_TRANSLATION = {
   endDateRequired: "تاريخ الانتهاء مطلوب",
   rangeError: "أدخل تاريخ أكبر من تاريخ البدأ",
 
+  waitScheduleGeneration: "برجاء الانتظار حتى يتم إنشاء الجدول",
+  scheduleGenerated: "تم إنشاء الجدول بنجاح",
+  downloadSchedule: "تحميل PDF",
+
   [Prayer.fajr]: Prayer.fajr,
   [Prayer.fajr]: "الفجر",
   [Prayer.dhuhr]: "الظهر",

@@ -45,6 +45,10 @@ const EN_TRANSLATION = {
   endDateRequired: "end date is required",
   rangeError: "enter date greater than start date",
 
+  waitScheduleGeneration: "Please wait until schedule is generated",
+  scheduleGenerated: "Schedule Generated Successfully",
+  downloadSchedule: "Download PDF",
+
   [Prayer.fajr]: Prayer.fajr,
   [Prayer.dhuhr]: Prayer.dhuhr,
   [Prayer.asr]: Prayer.asr,
