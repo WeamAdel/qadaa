@@ -24,6 +24,9 @@
   margin-right: auto;
   svg {
     font-size: max(min(4vw, 52px), 36px);
+    path {
+      stroke: var(--primary-fg);
+    }
   }
 }
 

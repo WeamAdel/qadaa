@@ -1,0 +1,17 @@
+.progress-spinner {
+  svg {
+    animation: rotateSpinner 2s linear infinite;
+    path {
+      stroke: var(--primary-fg);
+    }
+  }
+}
+
+@keyframes rotateSpinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
