@@ -7,6 +7,9 @@ import Form, {
   minYearLimit,
   maxYearLimit,
 } from "../../../components/GenerateSchedule/ByYears/Form";
+import ByYears from "../../../components/GenerateSchedule/ByYears/ByYears";
+import { addScheduleTableAssertions } from "../../utils/utils";
+import Prayer from "../../../types/Prayer";
 
 describe("Create schedule by years count", () => {
   it("Form is accessible", async () => {
@@ -53,5 +56,44 @@ describe("Create schedule by years count", () => {
     await waitFor(() => {
       expect(queryByText(/less than/im)).toBeNull();
     });
+  });
+
+  it("Should show loading on form submit", async () => {
+    const { getByTestId } = render(<ByYears />);
+
+    userEvent.type(getByTestId("years-count"), "1");
+    fireEvent.click(getByTestId("generate-form-submit"));
+
+    await waitFor(() => {
+      expect(getByTestId("schedule-loading")).toBeInTheDocument();
+    });
+  });
+
+  it("Should generate schedule with download button", async () => {
+    const { getByTestId } = render(<ByYears />);
+
+    userEvent.type(getByTestId("years-count"), "1");
+    fireEvent.click(getByTestId("generate-form-submit"));
+
+    await waitFor(
+      () => {
+        // Download modal
+        expect(getByTestId("download-schedule")).toBeInTheDocument();
+        expect(getByTestId("download-schedule-desc").textContent.length).not.toBe(0);
+        expect(getByTestId("download-schedule-btn")).toBeInTheDocument();
+
+        // Created schedule
+        const tablesWrapper = getByTestId("by-years-schedule-tables");
+
+        expect(tablesWrapper).toBeInTheDocument();
+
+        //365 days as we created the schedule for one year.
+        expect(tablesWrapper.childElementCount).toBe(365);
+
+        //Testing a random day(last day of the year) and a random prayer(last prayer in the last day).
+        addScheduleTableAssertions(tablesWrapper.children[364], "Day 365", 5, 1825, Prayer.isha);
+      },
+      { timeout: 1000 }
+    );
   });
 });

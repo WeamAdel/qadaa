@@ -5,11 +5,16 @@ interface PrimaryIconButtonInterface {
   title: string;
   children: any;
   onClick: MouseEventHandler;
+  testId?: string;
 }
 
-function PrimaryIconButton({ title, children, onClick }: PrimaryIconButtonInterface) {
+function PrimaryIconButton({ title, children, onClick, testId = "" }: PrimaryIconButtonInterface) {
   return (
-    <button className={`button button--primary button--icon`} onClick={onClick}>
+    <button
+      className={`button button--primary button--icon`}
+      onClick={onClick}
+      data-testid={testId}
+    >
       <IconWrapper>{children}</IconWrapper>
       {title}
     </button>

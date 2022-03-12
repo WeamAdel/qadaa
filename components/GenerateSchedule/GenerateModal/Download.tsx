@@ -12,12 +12,18 @@ function Download({ download }: Download) {
   const { scheduleGenerated, downloadSchedule } = useContext(LangContext);
 
   return (
-    <div className="generate-modal__content generate-modal__content--download" role="alert">
+    <div
+      className="generate-modal__content generate-modal__content--download"
+      role="alert"
+      data-testid="download-schedule"
+    >
       <Icon classes="generate-modal__icon">
         <CheckCircleRounded fontSize="large" />
       </Icon>
-      <p className="generate-modal__desc">{scheduleGenerated}</p>
-      <PrimaryIconButton title={downloadSchedule} onClick={download}>
+      <p className="generate-modal__desc" data-testid="download-schedule-desc">
+        {scheduleGenerated}
+      </p>
+      <PrimaryIconButton title={downloadSchedule} onClick={download} testId="download-schedule-btn">
         <DownloadRounded fontSize="small" />
       </PrimaryIconButton>
     </div>

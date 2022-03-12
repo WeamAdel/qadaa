@@ -17,8 +17,6 @@ function Schedule({ years, resetForm }: Schedule) {
   const [data, setData]: [Array<ScheduleYearData> | null, any] = useState(null);
   const [isGenerated, setIsGenerated] = useState(false);
 
-  console.log(data);
-
   useEffect(() => {
     if (!doc) {
       const jsPDFDoc = new jsPDF();
@@ -97,7 +95,7 @@ function Schedule({ years, resetForm }: Schedule) {
   }
 
   return (
-    <div>
+    <div data-testid="by-years-schedule-tables">
       {tables ? tables : null}
       <GenerateModal isGenerated={isGenerated} download={download} resetSchedule={resetSchedule} />
     </div>

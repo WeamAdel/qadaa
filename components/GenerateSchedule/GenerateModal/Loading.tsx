@@ -6,7 +6,10 @@ function Loading() {
   const { waitScheduleGeneration } = useContext(LangContext);
 
   return (
-    <div className="generate-modal__content generate-modal__content--loading">
+    <div
+      className="generate-modal__content generate-modal__content--loading"
+      data-testid="schedule-loading"
+    >
       <ProgressSpinner classes="generate-modal__icon" />
       <p className="generate-modal__desc">
         {waitScheduleGeneration} <span aria-hidden="true">...</span>

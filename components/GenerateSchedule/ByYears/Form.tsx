@@ -18,8 +18,6 @@ function Form({ generateSchedule }: { generateSchedule: (years: number) => void 
   } = useForm();
 
   function onSubmit(data: any) {
-    console.log(data);
-
     if (!isNaN(data.yearsNum)) {
       generateSchedule(data.yearsNum);
     }
