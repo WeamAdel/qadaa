@@ -1,12 +1,11 @@
 import Prayer from "../types/Prayer";
 
 const AR_TRANSLATION = {
-  about: "عنّا",
-  aboutPageTitle: "قضاء | عنّا",
   donate: "تبرّع",
   donatePageTitle: "قضاء | تبرّع",
   generateSchedule: "قم بإعداد جدول",
   homeDescription: "الخطوات الصغيرة هي ما تحدث فرقا, الفرق الذي سيغير حياتك الحقيقية.",
+  home: "الرئيسية",
   homePageTitle: "قضاء | الرئيسية",
   secondLang: "English",
   schedulePageTitle: "قضاء | إنشاء جدول",

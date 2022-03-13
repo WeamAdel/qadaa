@@ -1,11 +1,10 @@
 import Prayer from "../types/Prayer";
 
 const EN_TRANSLATION = {
-  about: "about",
-  aboutPageTitle: "Qadaa' | About",
   donate: "donate",
   donatePageTitle: "Qadaa' | Donate",
   generateSchedule: "generate schedule",
+  home: "home",
   homeDescription:
     "Little steps make the largest difference, the difference that will change your real life",
   homePageTitle: "Qadaa' | Home",

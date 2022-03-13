@@ -6,15 +6,15 @@ import LanguageItem from "./LanguageItem";
 import Route from "../../../../settings/routes";
 
 function NavItems() {
-  const lang = useContext(LangContext);
+  const { home, donate } = useContext(LangContext);
 
   return (
     <ul className="navbar__links-list">
-      <LinkItem title={lang.about} withLatern={true} url={Route.about} id="nav-about" />
+      <LinkItem title={home} withLatern={true} url={Route.home} id="nav-home" />
       <LanguageItem />
       <ThemeItem />
       <LinkItem
-        title={lang.donate}
+        title={donate}
         withLatern={false}
         url={Route.donate}
         classes="navbar__nav-item--cta"
