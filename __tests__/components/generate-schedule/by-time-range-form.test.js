@@ -8,16 +8,18 @@ import ByTimeRange from "../../../components/GenerateSchedule/ByTimeRage/ByTimeR
 import Form from "../../../components/GenerateSchedule/ByTimeRage/Form";
 import Prayer from "../../../types/Prayer";
 
+const generateSchedule = jest.fn();
+
 describe("Create schedule by time range", () => {
   it("Form is accessible", async () => {
-    const { container } = render(<Form />);
+    const { container } = render(<Form generateSchedule={generateSchedule} />);
     const results = await axe(container);
 
     expect(results).toHaveNoViolations();
   });
 
   it("Should show error message on empty dates", async () => {
-    const { getByText, getByTestId } = render(<Form />);
+    const { getByText, getByTestId } = render(<Form generateSchedule={generateSchedule} />);
 
     // Show
     fireEvent.click(getByTestId("generate-form-submit"));
@@ -29,7 +31,7 @@ describe("Create schedule by time range", () => {
   });
 
   it("Should show error message on end date less than start date", async () => {
-    const { getByText, getByTestId } = render(<Form />);
+    const { getByText, getByTestId } = render(<Form generateSchedule={generateSchedule} />);
 
     userEvent.type(getByTestId("range-start"), "2022-01-02");
     userEvent.type(getByTestId("range-end"), "2022-01-01");
@@ -42,7 +44,7 @@ describe("Create schedule by time range", () => {
   });
 
   it("Should hide error message on valid dates added", async () => {
-    const { queryByRole, getByTestId } = render(<Form />);
+    const { queryByRole, getByTestId } = render(<Form generateSchedule={generateSchedule} />);
 
     // Show required errors
     fireEvent.click(getByTestId("generate-form-submit"));
