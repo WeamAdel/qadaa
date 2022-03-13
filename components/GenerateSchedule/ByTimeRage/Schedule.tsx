@@ -27,6 +27,9 @@ function Schedule({ dateRange, resetForm }: Schedule) {
   }, [doc]);
 
   useEffect(() => {
+    // Cancel updating the state after the comonent unmounts
+    let cancel = false;
+
     if (dateRange && !data) {
       setTimeout(() => {
         generateScheduleData();
@@ -34,8 +37,14 @@ function Schedule({ dateRange, resetForm }: Schedule) {
     }
 
     function generateScheduleData() {
-      setData(new TimeRangeSchedule(dateRange).generateData());
+      if (!cancel) {
+        setData(new TimeRangeSchedule(dateRange).generateData());
+      }
     }
+
+    return () => {
+      cancel = true;
+    };
   }, [dateRange, data]);
 
   useEffect(() => {

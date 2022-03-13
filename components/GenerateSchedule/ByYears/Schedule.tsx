@@ -25,6 +25,9 @@ function Schedule({ years, resetForm }: Schedule) {
   }, [doc]);
 
   useEffect(() => {
+    // Cancel updating the state after the comonent unmounts
+    let cancel = false;
+
     if (years && !data) {
       setTimeout(() => {
         generateScheduleData();
@@ -32,8 +35,13 @@ function Schedule({ years, resetForm }: Schedule) {
     }
 
     function generateScheduleData() {
-      setData(new YearsCountSchedule(years).generateData());
+      if (!cancel) {
+        setData(new YearsCountSchedule(years).generateData());
+      }
     }
+    return () => {
+      cancel = true;
+    };
   }, [years, data]);
 
   useEffect(() => {

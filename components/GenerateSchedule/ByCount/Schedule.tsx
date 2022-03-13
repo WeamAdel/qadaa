@@ -29,6 +29,9 @@ function Schedule({ prayersCount, resetForm }: Schedule) {
   }, [doc]);
 
   useEffect(() => {
+    // Cancel updating the state after the comonent unmounts
+    let cancel = false;
+
     if (prayersCount && !data) {
       setTimeout(() => {
         generateScheduleData();
@@ -36,8 +39,15 @@ function Schedule({ prayersCount, resetForm }: Schedule) {
     }
 
     function generateScheduleData() {
-      setData(new PrayersCountSchedule(prayersCount).generateData());
+      console.log(cancel);
+      if (!cancel) {
+        setData(new PrayersCountSchedule(prayersCount).generateData());
+      }
     }
+
+    return () => {
+      cancel = true;
+    };
   }, [prayersCount, data]);
 
   useEffect(() => {

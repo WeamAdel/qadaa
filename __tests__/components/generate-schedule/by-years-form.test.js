@@ -11,16 +11,18 @@ import ByYears from "../../../components/GenerateSchedule/ByYears/ByYears";
 import { addDownloadScheduleAssertions, addScheduleTableAssertions } from "../../utils/utils";
 import Prayer from "../../../types/Prayer";
 
+const generateSchedule = jest.fn();
+
 describe("Create schedule by years count", () => {
   it("Form is accessible", async () => {
-    const { container } = render(<Form />);
+    const { container } = render(<Form generateSchedule={generateSchedule} />);
     const results = await axe(container);
 
     expect(results).toHaveNoViolations();
   });
 
   it("Should show error message on empty years count", async () => {
-    const { getByText, getByTestId } = render(<Form />);
+    const { getByText, getByTestId } = render(<Form generateSchedule={generateSchedule} />);
 
     fireEvent.click(getByTestId("generate-form-submit"));
 
@@ -30,7 +32,7 @@ describe("Create schedule by years count", () => {
   });
 
   it("Should show error message on years count greater than the maximum year limit", async () => {
-    const { getByText, getByTestId } = render(<Form />);
+    const { getByText, getByTestId } = render(<Form generateSchedule={generateSchedule} />);
 
     userEvent.type(getByTestId("years-count"), (maxYearLimit + 1).toString());
     fireEvent.click(getByTestId("generate-form-submit"));
@@ -41,7 +43,9 @@ describe("Create schedule by years count", () => {
   });
 
   it("Should hide error message on valid number added", async () => {
-    const { getByText, queryByText, getByTestId } = render(<Form />);
+    const { getByText, queryByText, getByTestId } = render(
+      <Form generateSchedule={generateSchedule} />
+    );
 
     userEvent.type(getByTestId("years-count"), (minYearLimit - 1).toString());
     fireEvent.click(getByTestId("generate-form-submit"));
