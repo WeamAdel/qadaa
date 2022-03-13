@@ -84,7 +84,7 @@ function Schedule({ prayersCount, resetForm }: Schedule) {
   }
 
   return (
-    <div>
+    <div data-testid="by-prayers-count-schedule-tables">
       {tables ? tables : null}
       <GenerateModal isGenerated={isGenerated} download={download} resetSchedule={resetSchedule} />
     </div>
