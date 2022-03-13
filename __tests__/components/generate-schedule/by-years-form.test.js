@@ -8,7 +8,7 @@ import Form, {
   maxYearLimit,
 } from "../../../components/GenerateSchedule/ByYears/Form";
 import ByYears from "../../../components/GenerateSchedule/ByYears/ByYears";
-import { addScheduleTableAssertions } from "../../utils/utils";
+import { addDownloadScheduleAssertions, addScheduleTableAssertions } from "../../utils/utils";
 import Prayer from "../../../types/Prayer";
 
 describe("Create schedule by years count", () => {
@@ -78,9 +78,7 @@ describe("Create schedule by years count", () => {
     await waitFor(
       () => {
         // Download modal
-        expect(getByTestId("download-schedule")).toBeInTheDocument();
-        expect(getByTestId("download-schedule-desc").textContent.length).not.toBe(0);
-        expect(getByTestId("download-schedule-btn")).toBeInTheDocument();
+        addDownloadScheduleAssertions(getByTestId);
 
         // Created schedule
         const tablesWrapper = getByTestId("by-years-schedule-tables");
@@ -93,7 +91,7 @@ describe("Create schedule by years count", () => {
         //Testing a random day(last day of the year) and a random prayer(last prayer in the last day).
         addScheduleTableAssertions(tablesWrapper.children[364], "Day 365", 5, 1825, Prayer.isha);
       },
-      { timeout: 1000 }
+      { timeout: 5000 }
     );
   });
 });

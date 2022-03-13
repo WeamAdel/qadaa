@@ -23,6 +23,16 @@ export function redirectsToPage(Component, url, testid, locale = Language.en) {
 }
 
 /**
+ * Adds asssertiong to check download modal components.
+ * @param {(string)=>HTMLElement} getByTestId React testing library getByTestId
+ */
+export function addDownloadScheduleAssertions(getByTestId) {
+  expect(getByTestId("download-schedule")).toBeInTheDocument();
+  expect(getByTestId("download-schedule-desc").textContent.length).not.toBe(0);
+  expect(getByTestId("download-schedule-btn")).toBeInTheDocument();
+}
+
+/**
  * Adds assertions to check the generated schedule table validity.
  * @param {HTMLTableElement} table The table to test.
  * @param {string} expectedTitle Expected table title.

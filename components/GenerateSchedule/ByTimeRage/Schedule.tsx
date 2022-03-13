@@ -93,7 +93,7 @@ function Schedule({ dateRange, resetForm }: Schedule) {
   }
 
   return (
-    <div>
+    <div data-testid="by-time-range-schedule-tables">
       {tables ? tables : null}
       <GenerateModal isGenerated={isGenerated} download={download} resetSchedule={resetSchedule} />
     </div>

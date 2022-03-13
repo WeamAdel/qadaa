@@ -2,8 +2,11 @@ import { render, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import "jest-axe/extend-expect";
+import { addDownloadScheduleAssertions, addScheduleTableAssertions } from "../../utils/utils";
 
+import ByTimeRange from "../../../components/GenerateSchedule/ByTimeRage/ByTimeRange";
 import Form from "../../../components/GenerateSchedule/ByTimeRage/Form";
+import Prayer from "../../../types/Prayer";
 
 describe("Create schedule by time range", () => {
   it("Form is accessible", async () => {
@@ -56,5 +59,44 @@ describe("Create schedule by time range", () => {
     await waitFor(() => {
       expect(queryByRole("alert")).toBeNull();
     });
+  });
+
+  it("Should show loading on form submit", async () => {
+    const { getByTestId } = render(<ByTimeRange />);
+
+    userEvent.type(getByTestId("range-start"), "2022-01-01");
+    userEvent.type(getByTestId("range-end"), "2022-01-10");
+    fireEvent.click(getByTestId("generate-form-submit"));
+
+    await waitFor(() => {
+      expect(getByTestId("schedule-loading")).toBeInTheDocument();
+    });
+  });
+
+  it("Should generate schedule with download button", async () => {
+    const { getByTestId } = render(<ByTimeRange />);
+
+    userEvent.type(getByTestId("range-start"), "2022-01-01");
+    userEvent.type(getByTestId("range-end"), "2022-01-10");
+    fireEvent.click(getByTestId("generate-form-submit"));
+
+    await waitFor(
+      () => {
+        // Download modal
+        addDownloadScheduleAssertions(getByTestId);
+
+        // Created schedule
+        const tablesWrapper = getByTestId("by-time-range-schedule-tables");
+
+        expect(tablesWrapper).toBeInTheDocument();
+
+        //10 days time range.
+        expect(tablesWrapper.childElementCount).toBe(10);
+
+        //Testing a random day(10th day) and a random prayer(last prayer in the 10th day).
+        addScheduleTableAssertions(tablesWrapper.children[9], "Day 10", 5, 50, Prayer.isha);
+      },
+      { timeout: 3000 }
+    );
   });
 });

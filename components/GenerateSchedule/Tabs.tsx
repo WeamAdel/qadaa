@@ -6,7 +6,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { Tab as TabEnum, TabInterface, tabValues } from "../../types/Tabs";
 import ByYears from "./ByYears/ByYears";
-import ByTimeRage from "./ByTimeRage/ByTimeRage";
+import ByTimeRage from "./ByTimeRage/ByTimeRange";
 import ByCount from "./ByCount/ByCount";
 import { LangContext } from "../../Providers/Language";
 import { getPageURLHash } from "../../utils/utils";
