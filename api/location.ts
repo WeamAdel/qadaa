@@ -9,11 +9,13 @@ export interface LocationSuccessResponse {
  * Gets the user's location info.
  */
 export async function getAPILocationInfo(): Promise<LocationSuccessResponse | undefined> {
-  const response: LocationSuccessResponse | undefined = await fetch(
-    "https://json.geoiplookup.io/"
-  ).then((res) => {
-    return res.json();
-  });
+  const response: LocationSuccessResponse | undefined = await fetch("https://json.geoiplookup.io/")
+    .then((res) => {
+      return res.json();
+    })
+    .catch((e) => {
+      console.log(e);
+    });
 
   if (response && response.success) {
     return response;
