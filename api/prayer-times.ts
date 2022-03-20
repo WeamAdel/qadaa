@@ -1,17 +1,36 @@
-import { SuccessResponse, FailureResponse, PrayerTimesResponse } from "../types/api/prayer-times";
+export interface SuccessResponse {
+  success: boolean;
+  prayerTimes: {
+    fajr: string;
+    dhuhr: string;
+    asr: string;
+    maghrib: string;
+    isha: string;
+  };
+  timestamp: number;
+  timezone: string;
+}
+
+export interface FailureResponse {
+  success: boolean;
+  message: string;
+}
+
+export type PrayerTimesResponse = SuccessResponse | FailureResponse;
 
 const apiEndPoint = "https://api.pray.zone/v2/times/today.json";
 
 /**
  * Gets prayer times.
- *
- * @param long Longitude
- * @param lat Latitude
- *
+ * @param longitude Longitude
+ * @param latitude Latitude
  * @link https://prayertimes.date/api/docs/today;
  */
-async function getAPIPrayerTimes(long: Number, lat: Number): Promise<PrayerTimesResponse> {
-  return await fetch(`${apiEndPoint}?longitude=${long}&latitude=${lat}`)
+export async function getAPIPrayerTimes(
+  longitude: Number,
+  latitude: Number
+): Promise<PrayerTimesResponse> {
+  return await fetch(`${apiEndPoint}?longitude=${longitude}&latitude=${latitude}`)
     .then((res: any = {}) => {
       console.log(res);
 
@@ -56,5 +75,3 @@ function extractResData(res: any = {}): SuccessResponse {
     timezone,
   };
 }
-
-export default getAPIPrayerTimes;
