@@ -1,11 +1,11 @@
-import { ScheduleRow } from "../../../types/Schedule";
+import { SchedulePrayerData } from "../../../models/Schedule";
 
 import TableBody from "./TableBody";
 import TableHead from "./TableHead";
 
 interface Table {
   id: string;
-  prayers: Array<ScheduleRow>;
+  prayers: Array<SchedulePrayerData>;
   title?: string;
 }
 
