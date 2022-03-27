@@ -1,3 +1,5 @@
+require("isomorphic-fetch");
+
 export interface SuccessResponse {
   success: boolean;
   prayerTimes: {

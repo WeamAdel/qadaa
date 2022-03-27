@@ -8,7 +8,7 @@ function PrayerInfoCells({ name, time }: { name: string; time: string }) {
   return (
     <>
       <PrayerCell type="name">{lang[name]}</PrayerCell>
-      <PrayerCell>{time}</PrayerCell>
+      <PrayerCell testid={`time-of-${name}`}>{time}</PrayerCell>
     </>
   );
 }
