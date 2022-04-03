@@ -44,6 +44,7 @@ const EN_TRANSLATION = {
   waitScheduleGeneration: "Please wait until schedule is generated",
   scheduleGenerated: "Schedule Generated Successfully",
   downloadSchedule: "Download PDF",
+  blockedDownload: "In case of blocked download, please check your browser extensions.",
 
   [Prayer.fajr]: Prayer.fajr,
   [Prayer.dhuhr]: Prayer.dhuhr,

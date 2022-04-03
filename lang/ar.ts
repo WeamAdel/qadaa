@@ -43,6 +43,7 @@ const AR_TRANSLATION = {
   waitScheduleGeneration: "برجاء الانتظار حتى يتم إنشاء الجدول",
   scheduleGenerated: "تم إنشاء الجدول بنجاح",
   downloadSchedule: "تحميل PDF",
+  blockedDownload: "في حال رفض التحميل, من فضلك راجع إضافات المتصفح.",
 
   [Prayer.fajr]: Prayer.fajr,
   [Prayer.fajr]: "الفجر",

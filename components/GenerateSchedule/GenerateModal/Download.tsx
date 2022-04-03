@@ -9,7 +9,7 @@ interface Download {
 }
 
 function Download({ download }: Download) {
-  const { scheduleGenerated, downloadSchedule } = useContext(LangContext);
+  const { scheduleGenerated, downloadSchedule, blockedDownload } = useContext(LangContext);
 
   return (
     <div
@@ -26,6 +26,7 @@ function Download({ download }: Download) {
       <PrimaryIconButton title={downloadSchedule} onClick={download} testId="download-schedule-btn">
         <DownloadRounded fontSize="small" />
       </PrimaryIconButton>
+      <p className="generate-modal__blocked-download">{blockedDownload}</p>
     </div>
   );
 }
