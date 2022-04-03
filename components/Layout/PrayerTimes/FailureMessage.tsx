@@ -9,14 +9,20 @@ interface FailureMessageInterface {
 function FailureMessage({ message, onRetry }: FailureMessageInterface) {
   const { retry } = useContext(LangContext);
   const retryBtnJSX = onRetry ? (
-    <button className="button button--secondary" onClick={onRetry}>
+    <button
+      className="button button--secondary"
+      onClick={onRetry}
+      data-testid="prayer-times-retry-btn"
+    >
       {retry}
     </button>
   ) : null;
 
   return (
     <div className="prayer-times__failure" role="alert">
-      <p className="prayer-times__failure-message">{message}</p>
+      <p className="prayer-times__failure-message" data-testid="prayer-times-failure-msg">
+        {message}
+      </p>
       {retryBtnJSX}
     </div>
   );

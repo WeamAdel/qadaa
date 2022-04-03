@@ -18,11 +18,9 @@ jest.spyOn(useRouter, "useRouter").mockImplementationOnce(() => ({
 
 describe("Prayer times API", () => {
   it("Should fetch prayer times and show them", async () => {
-    const locationRes = getFakeUserLocation(true);
     const prayersRes = getFakePrayersResponse();
 
-    getAPILocationInfo.mockImplementationOnce(() => locationRes);
-    getAPIPrayerTimes.mockImplementationOnce(() => prayersRes);
+    triggerSuccessfullPrayerTimesMock();
 
     const { getByTestId } = render(<PrayerTimes />);
 
@@ -40,6 +38,64 @@ describe("Prayer times API", () => {
         prayersRes.prayerTimes.maghrib
       );
       expect(getByTestId(`time-of-${Prayer.isha}`)).toHaveTextContent(prayersRes.prayerTimes.isha);
+    });
+  });
+
+  it("Should show location access failure message", async () => {
+    getAPILocationInfo.mockImplementationOnce(() => null);
+
+    const { getByTestId } = render(<PrayerTimes />);
+
+    await waitFor(() => {
+      expect(getByTestId("prayer-times-failure-msg")).toHaveTextContent(/location/gi);
+      expect(getByTestId("prayer-times-retry-btn")).toBeInTheDocument();
+    });
+  });
+
+  it("Should retry on failed location access", async () => {
+    getAPILocationInfo.mockImplementationOnce(() => null);
+
+    const { getByTestId, queryByTestId } = render(<PrayerTimes />);
+
+    triggerSuccessfullPrayerTimesMock();
+
+    await waitFor(() => {
+      expect(getByTestId("prayer-times-failure-msg")).toBeInTheDocument();
+      fireEvent.click(getByTestId("prayer-times-retry-btn"));
+    });
+
+    await waitFor(() => {
+      expect(queryByTestId("prayer-times-failure-msg")).toBeFalsy();
+    });
+  });
+
+  it("Should show prayer times API failure message", async () => {
+    getAPILocationInfo.mockImplementationOnce(() => getFakeUserLocation());
+    getAPIPrayerTimes.mockImplementationOnce(() => getFakePrayersFailureResponse());
+
+    const { getByTestId } = render(<PrayerTimes />);
+
+    await waitFor(() => {
+      expect(getByTestId("prayer-times-failure-msg")).toHaveTextContent(/Failed to get/gi);
+      expect(getByTestId("prayer-times-retry-btn")).toBeInTheDocument();
+    });
+  });
+
+  it("Should retry on getting prayer times API failure", async () => {
+    getAPILocationInfo.mockImplementationOnce(() => getFakeUserLocation());
+    getAPIPrayerTimes.mockImplementationOnce(() => getFakePrayersFailureResponse());
+
+    const { getByTestId, queryByTestId } = render(<PrayerTimes />);
+
+    triggerSuccessfullPrayerTimesMock();
+
+    await waitFor(() => {
+      expect(getByTestId("prayer-times-failure-msg")).toBeInTheDocument();
+      fireEvent.click(getByTestId("prayer-times-retry-btn"));
+    });
+
+    await waitFor(() => {
+      expect(queryByTestId("prayer-times-failure-msg")).toBeFalsy();
     });
   });
 
@@ -63,12 +119,17 @@ describe("Prayer times API", () => {
   });
 });
 
-function getFakeUserLocation(success) {
+function triggerSuccessfullPrayerTimesMock() {
+  getAPILocationInfo.mockImplementationOnce(() => getFakeUserLocation());
+  getAPIPrayerTimes.mockImplementationOnce(() => getFakePrayersResponse());
+}
+
+function getFakeUserLocation() {
   return {
     ip: "1234",
     latitude: 10,
     longitude: 30,
-    success,
+    success: true,
   };
 }
 
@@ -88,4 +149,8 @@ function getFakePrayersResponse() {
   };
 
   return res;
+}
+
+function getFakePrayersFailureResponse() {
+  return { success: false };
 }

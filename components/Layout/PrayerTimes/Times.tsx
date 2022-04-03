@@ -13,7 +13,6 @@ import { formatDate, formatHejriDate } from "../../../utils/utils";
 
 import Language from "../../../types/Language";
 import Prayer from "../../../types/Prayer";
-import { GeolocationErrorCode } from "../../../types/Geolocation";
 import { getAPILocationInfo, LocationSuccessResponse } from "../../../api/location";
 
 interface TimesInterface {
@@ -59,6 +58,7 @@ function Times({ modalTitleId, modalDescId, closeModal, isOpen }: TimesInterface
     if (!dates.timezone) {
       getPrayerTimes();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dates]);
 
   /**
@@ -76,7 +76,7 @@ function Times({ modalTitleId, modalDescId, closeModal, isOpen }: TimesInterface
   async function handleLocationSuccess({ latitude, longitude }: LocationSuccessResponse) {
     const result = await getAPIPrayerTimes(longitude, latitude);
 
-    if (result.success) {
+    if (result && result.success) {
       updatePrayerTimes(result as SuccessResponse);
       setAPIFailed(false);
     } else {
@@ -106,7 +106,6 @@ function Times({ modalTitleId, modalDescId, closeModal, isOpen }: TimesInterface
   }
 
   function handleAPIRequestFailure(result: FailureResponse) {
-    console.log(result);
     setAPIFailed(true);
   }
 
