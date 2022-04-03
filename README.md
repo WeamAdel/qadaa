@@ -20,7 +20,7 @@ ___
 
 ## Demo
 
-- Link to be added later.
+- [Demo site](https://qadaa-86e533osf-weamadel.vercel.app/)
 
 ___
 
