@@ -60,7 +60,7 @@ describe("Routing with locale change", () => {
 //   });
 // });
 
-describe.only("Nav Menu Toggle", () => {
+describe("Nav Menu Toggle", () => {
   it("Toggles nav menu on/off", async () => {
     const { getByTestId } = render(<Navbar />);
 
