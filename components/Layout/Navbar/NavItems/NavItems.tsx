@@ -19,6 +19,7 @@ function NavItems() {
         url={Route.donate}
         classes="navbar__nav-item--cta"
         id="nav-donate"
+        target="_blank"
       />
     </ul>
   );

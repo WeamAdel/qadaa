@@ -8,9 +8,10 @@ interface LinkItemInterface {
   url: string;
   classes?: string;
   id?: string;
+  target?: "_blank" | "_parent" | "_self" | "_top";
 }
 
-function LinkItem({ title, withLatern, url, classes, id }: LinkItemInterface) {
+function LinkItem({ title, withLatern, url, classes, id, target = "_self" }: LinkItemInterface) {
   const laternJSX = withLatern ? <Latern /> : null;
   const { locale } = useRouter();
 
@@ -18,7 +19,9 @@ function LinkItem({ title, withLatern, url, classes, id }: LinkItemInterface) {
     <li className={`navbar__nav-item ${classes}`}>
       {laternJSX}
       <Link href={url} locale={locale}>
-        <a data-testid={id}>{title}</a>
+        <a data-testid={id} target={target} rel="noreferrer">
+          {title}
+        </a>
       </Link>
     </li>
   );
