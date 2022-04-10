@@ -32,14 +32,20 @@ const AR_TRANSLATION = {
   generate: "إنشاء",
   numberOfYears: "عدد السنوات",
 
+  // By years form
   yearsRequired: "هذا الحقل مطلوب",
   minYears: "يجب أن لا يقل عدد السنوات عن ",
   maxYears: "يجب أن لا يزيد عدد السنوات عن ",
 
+  // By range form
   startDateRequired: "تاريخ البدأ مطلوب",
   endDateRequired: "تاريخ الانتهاء مطلوب",
   rangeError: "أدخل تاريخ أكبر من تاريخ البدأ",
 
+  //By prayers count form
+  minPrayers: "من فضلك أدخل العدد لإحدى الصلوات على الأقل",
+
+  // Schedule modal
   waitScheduleGeneration: "برجاء الانتظار حتى يتم إنشاء الجدول",
   scheduleGenerated: "تم إنشاء الجدول بنجاح",
   downloadSchedule: "تحميل PDF",

@@ -16,7 +16,7 @@ interface Form {
 }
 
 function Form({ generateSchedule }: Form) {
-  //   const { numberOfYears, yearsRequired, minYears, maxYears } = useContext(LangContext);
+  const { minPrayers, maxYears } = useContext(LangContext);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isTouched, setIsTouched] = useState(false);
   const [maxCountExceeded, setMaxCountExceeded] = useState(false);
@@ -85,8 +85,8 @@ function Form({ generateSchedule }: Form) {
   let errorMessages = [];
 
   if (isTouched) {
-    if (isEmpty) errorMessages.push("Please enter at leats one prayer count");
-    if (maxCountExceeded) errorMessages.push("Please enter numbers less than " + perPrayerMaxCount);
+    if (isEmpty) errorMessages.push(minPrayers);
+    if (maxCountExceeded) errorMessages.push(`${maxYears} ${perPrayerMaxCount}`);
   }
 
   const errorMessagesJSX = errorMessages.map((message, index) => {
