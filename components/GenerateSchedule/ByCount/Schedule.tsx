@@ -7,6 +7,9 @@ import "jspdf-autotable";
 
 import Table from "../PDFTable/Table";
 import GenerateModal from "../GenerateModal/GenerateModal";
+import { useRouter } from "next/router";
+import Language from "../../../types/Language";
+import "../../../fonts/Amiri";
 
 interface Schedule {
   prayersCount: PrayersCount;
@@ -20,6 +23,7 @@ function Schedule({ prayersCount, resetForm }: Schedule) {
   const [tables, setTables]: [Array<ReactNode> | null, any] = useState(null);
   const [data, setData]: [Array<SchedulePrayerData> | null, any] = useState(null);
   const [isGenerated, setIsGenerated] = useState(false);
+  const { locale } = useRouter();
 
   useEffect(() => {
     if (!doc) {
@@ -39,16 +43,15 @@ function Schedule({ prayersCount, resetForm }: Schedule) {
     }
 
     function generateScheduleData() {
-      console.log(cancel);
       if (!cancel) {
-        setData(new PrayersCountSchedule(prayersCount).generateData());
+        setData(new PrayersCountSchedule(prayersCount, locale as Language).generateData());
       }
     }
 
     return () => {
       cancel = true;
     };
-  }, [prayersCount, data]);
+  }, [prayersCount, data, locale]);
 
   useEffect(() => {
     //@ts-ignore
@@ -74,7 +77,8 @@ function Schedule({ prayersCount, resetForm }: Schedule) {
         html: "#" + tableId,
         useCss: true,
         theme: "grid",
-        // pageBreak: "avoid",
+        headStyles: { font: "Amiri" },
+        bodyStyles: { font: "Amiri" },
       });
     }
   }, [tables, data, doc]);

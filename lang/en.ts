@@ -52,6 +52,13 @@ const EN_TRANSLATION = {
   downloadSchedule: "Download PDF",
   blockedDownload: "In case of blocked download, please check your browser extensions.",
 
+  // Generated schedule PDF
+  day: "Day",
+  year: "Year",
+  prayer: "Prayer",
+  number: "Number",
+  done: "Done",
+
   [Prayer.fajr]: Prayer.fajr,
   [Prayer.dhuhr]: Prayer.dhuhr,
   [Prayer.asr]: Prayer.asr,

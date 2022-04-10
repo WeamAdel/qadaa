@@ -1,5 +1,11 @@
+import { getLangTrans } from "../lang/lang";
+import Language from "../types/Language";
 import Prayer from "../types/Prayer";
 import { DateRange, PrayersCount } from "../types/Schedule";
+
+interface Schedule {
+  lang: Language;
+}
 
 export interface YearsCountSchedule {
   years: number;
@@ -31,10 +37,23 @@ export interface PrayersCountSchedule {
   prayersCount: PrayersCount;
 }
 
-export class YearsCountSchedule implements YearsCountSchedule {
+class Schedule {
+  lang;
+
+  /**
+   * @param lang Language of the schedule. By default it's in English.
+   */
+  constructor(lang?: Language) {
+    console.log(lang);
+    this.lang = lang && lang in Language ? lang : Language.en;
+  }
+}
+
+export class YearsCountSchedule extends Schedule implements YearsCountSchedule {
   years;
 
-  constructor(years: number) {
+  constructor(years: number, lang?: Language) {
+    super(lang);
     this.years = years;
   }
 
@@ -66,11 +85,12 @@ export class YearsCountSchedule implements YearsCountSchedule {
   }
 }
 
-export class TimeRangeSchedule implements TimeRangeSchedule {
+export class TimeRangeSchedule extends Schedule implements TimeRangeSchedule {
   startDate;
   endDate;
 
-  constructor(dateRange: DateRange) {
+  constructor(dateRange: DateRange, lang?: Language) {
+    super(lang);
     this.startDate = dateRange.startDate;
     this.endDate = dateRange.endDate;
   }
@@ -102,10 +122,11 @@ export class TimeRangeSchedule implements TimeRangeSchedule {
   }
 }
 
-export class PrayersCountSchedule implements PrayersCountSchedule {
+export class PrayersCountSchedule extends Schedule implements PrayersCountSchedule {
   prayersCount;
 
-  constructor(prayersCount: PrayersCount) {
+  constructor(prayersCount: PrayersCount, lang?: Language) {
+    super(lang);
     this.prayersCount = prayersCount;
   }
 
@@ -115,10 +136,14 @@ export class PrayersCountSchedule implements PrayersCountSchedule {
   generateData(): Array<SchedulePrayerData> | null {
     let count = 0;
     const data: Array<SchedulePrayerData> = [];
+    const lang = getLangTrans(this.lang);
+    console.log(lang);
+    console.log(this.lang);
 
     for (let key in this.prayersCount) {
       for (let i = 0; i < this.prayersCount[key as Prayer]; i++) {
-        data.push({ prayer: key, count: ++count });
+        console.log(lang[key]);
+        data.push({ prayer: lang[key] || key, count: ++count });
       }
     }
 
