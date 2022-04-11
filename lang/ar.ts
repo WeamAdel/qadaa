@@ -51,6 +51,14 @@ const AR_TRANSLATION = {
   downloadSchedule: "تحميل PDF",
   blockedDownload: "في حال رفض التحميل, من فضلك راجع إضافات المتصفح.",
 
+  // Generated schedule PDF
+  day: "اليوم",
+  year: "السنة",
+  prayer: "الصلاة",
+  number: "الرقم",
+  done: "تم",
+  prayers: "الصلوات",
+
   [Prayer.fajr]: Prayer.fajr,
   [Prayer.fajr]: "الفجر",
   [Prayer.dhuhr]: "الظهر",
