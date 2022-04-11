@@ -58,6 +58,7 @@ const EN_TRANSLATION = {
   prayer: "Prayer",
   number: "Number",
   done: "Done",
+  prayers: "Parayers",
 
   [Prayer.fajr]: Prayer.fajr,
   [Prayer.dhuhr]: Prayer.dhuhr,

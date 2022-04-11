@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useContext, useEffect, useState } from "react";
 import { PrayersCountSchedule, SchedulePrayerData } from "../../../models/Schedule";
 import { PrayersCount } from "../../../types/Schedule";
 
@@ -9,7 +9,8 @@ import Table from "../PDFTable/Table";
 import GenerateModal from "../GenerateModal/GenerateModal";
 import { useRouter } from "next/router";
 import Language from "../../../types/Language";
-import "../../../fonts/Amiri";
+import AUTOTABLE_CONFIGS from "../autotable-configs";
+import { LangContext } from "../../../Providers/Language";
 
 interface Schedule {
   prayersCount: PrayersCount;
@@ -23,6 +24,7 @@ function Schedule({ prayersCount, resetForm }: Schedule) {
   const [tables, setTables]: [Array<ReactNode> | null, any] = useState(null);
   const [data, setData]: [Array<SchedulePrayerData> | null, any] = useState(null);
   const [isGenerated, setIsGenerated] = useState(false);
+  const { prayers } = useContext(LangContext);
   const { locale } = useRouter();
 
   useEffect(() => {
@@ -61,10 +63,10 @@ function Schedule({ prayersCount, resetForm }: Schedule) {
 
     function createTables(): ReactNode | undefined {
       if (data) {
-        return <Table key={scheduleId} id={scheduleId} prayers={data} title={"Prayers"} />;
+        return <Table key={scheduleId} id={scheduleId} prayers={data} title={prayers} />;
       }
     }
-  }, [doc, data, tables]);
+  }, [doc, data, tables, prayers]);
 
   useEffect(() => {
     if (tables && doc && data) {
@@ -75,10 +77,7 @@ function Schedule({ prayersCount, resetForm }: Schedule) {
     function addDayTable(tableId: string) {
       doc.autoTable({
         html: "#" + tableId,
-        useCss: true,
-        theme: "grid",
-        headStyles: { font: "Amiri" },
-        bodyStyles: { font: "Amiri" },
+        ...AUTOTABLE_CONFIGS,
       });
     }
   }, [tables, data, doc]);

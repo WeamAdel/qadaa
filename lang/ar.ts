@@ -57,6 +57,7 @@ const AR_TRANSLATION = {
   prayer: "الصلاة",
   number: "الرقم",
   done: "تم",
+  prayers: "الصلوات",
 
   [Prayer.fajr]: Prayer.fajr,
   [Prayer.fajr]: "الفجر",
