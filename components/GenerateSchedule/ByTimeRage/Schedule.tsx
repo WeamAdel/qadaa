@@ -7,6 +7,9 @@ import "jspdf-autotable";
 
 import Table from "../PDFTable/Table";
 import GenerateModal from "../GenerateModal/GenerateModal";
+import AUTOTABLE_CONFIGS from "../autotable-configs";
+import { useRouter } from "next/router";
+import Language from "../../../types/Language";
 
 interface Schedule {
   dateRange: DateRange;
@@ -18,6 +21,7 @@ function Schedule({ dateRange, resetForm }: Schedule) {
   const [tables, setTables]: [Array<ReactNode> | null, any] = useState(null);
   const [data, setData]: [Array<ScheduleDayData> | null, any] = useState(null);
   const [isGenerated, setIsGenerated] = useState(false);
+  const { locale } = useRouter();
 
   useEffect(() => {
     if (!doc) {
@@ -37,15 +41,16 @@ function Schedule({ dateRange, resetForm }: Schedule) {
     }
 
     function generateScheduleData() {
+      console.log(locale);
       if (!cancel) {
-        setData(new TimeRangeSchedule(dateRange).generateData());
+        setData(new TimeRangeSchedule(dateRange, locale as Language).generateData());
       }
     }
 
     return () => {
       cancel = true;
     };
-  }, [dateRange, data]);
+  }, [dateRange, data, locale]);
 
   useEffect(() => {
     if (!tables && data) {
@@ -80,9 +85,8 @@ function Schedule({ dateRange, resetForm }: Schedule) {
     function addDayTable(tableId: string) {
       doc.autoTable({
         html: "#" + tableId,
-        useCss: true,
-        theme: "grid",
         pageBreak: "avoid",
+        ...AUTOTABLE_CONFIGS,
       });
     }
   }, [tables, data, doc]);

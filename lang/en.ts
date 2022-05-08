@@ -57,6 +57,14 @@ const EN_TRANSLATION = {
   notFoundDescription: "The page you are trying to visit does not exist!",
   goBackHome: "Go back home",
 
+  // Generated schedule PDF
+  day: "Day",
+  year: "Year",
+  prayer: "Prayer",
+  number: "Number",
+  done: "Done",
+  prayers: "Parayers",
+
   // Prayers
   [Prayer.fajr]: Prayer.fajr,
   [Prayer.dhuhr]: Prayer.dhuhr,

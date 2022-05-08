@@ -55,6 +55,14 @@ const AR_TRANSLATION = {
   notFoundDescription: "الصفة التي تحاول زيارتها غير موجودة!",
   goBackHome: "العودة للرئيسية",
 
+  // Generated schedule PDF
+  day: "اليوم",
+  year: "السنة",
+  prayer: "الصلاة",
+  number: "الرقم",
+  done: "تم",
+  prayers: "الصلوات",
+
   // Prayers
   [Prayer.fajr]: Prayer.fajr,
   [Prayer.fajr]: "الفجر",
