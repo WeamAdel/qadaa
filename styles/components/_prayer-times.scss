@@ -10,6 +10,8 @@
   width: var(--prayer-times-size);
   height: var(--prayer-times-size);
   position: fixed;
+  left: var(--container-px);
+  right: var(--container-px);
   inset-inline-start: var(--container-px);
   bottom: var(--navbar-py);
   cursor: pointer;

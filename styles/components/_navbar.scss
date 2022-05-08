@@ -130,7 +130,7 @@
 
 .navbar__latern {
   position: absolute;
-  inset-inline-end: 0;
+  right: 0;
   top: 0;
   z-index: -1;
   transform: translateX(calc(50% + 2px));
@@ -144,6 +144,7 @@
 
 [dir="rtl"] {
   .navbar__latern {
+    left: 0;
     transform: translateX(calc(-50% - 2px));
   }
 }
