@@ -47,6 +47,18 @@
   }
 }
 
+.button--tertiary {
+  background-color: var(--tertiary-accent);
+  color: var(--primary-fg);
+  font-weight: normal;
+
+  &:hover {
+    background-color: var(--primary-fg);
+    color: var(--primary-bg);
+    opacity: 1;
+  }
+}
+
 .button--link {
   a {
     @extend .button;
@@ -60,6 +72,10 @@
 
 .button--link--secondary a {
   @extend .button--secondary;
+}
+
+.button--link--tertiary a {
+  @extend .button--tertiary;
 }
 
 .close-button {

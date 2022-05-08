@@ -52,6 +52,12 @@ const EN_TRANSLATION = {
   downloadSchedule: "Download PDF",
   blockedDownload: "In case of blocked download, please check your browser extensions.",
 
+  // 404 error
+  notFoundHeading: "Page not found",
+  notFoundDescription: "The page you are trying to visit does not exist!",
+  goBackHome: "Go back home",
+
+  // Prayers
   [Prayer.fajr]: Prayer.fajr,
   [Prayer.dhuhr]: Prayer.dhuhr,
   [Prayer.asr]: Prayer.asr,

@@ -51,6 +51,11 @@ const AR_TRANSLATION = {
   downloadSchedule: "تحميل PDF",
   blockedDownload: "في حال رفض التحميل, من فضلك راجع إضافات المتصفح.",
 
+  notFoundHeading: "الصفحة غير موجودة",
+  notFoundDescription: "الصفة التي تحاول زيارتها غير موجودة!",
+  goBackHome: "العودة للرئيسية",
+
+  // Prayers
   [Prayer.fajr]: Prayer.fajr,
   [Prayer.fajr]: "الفجر",
   [Prayer.dhuhr]: "الظهر",
