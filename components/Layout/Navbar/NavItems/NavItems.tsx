@@ -20,6 +20,7 @@ function NavItems() {
         classes="navbar__nav-item--cta"
         id="nav-donate"
         target="_blank"
+        isExternal={true}
       />
     </ul>
   );
