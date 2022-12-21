@@ -51,6 +51,7 @@ function Times({ modalTitleId, modalDescId, closeModal, isOpen }: TimesInterface
   const [dates, setDates] = useState<Dates>(initialDates);
   const [locationAccessFailed, setLocationAccessFailed] = useState(false);
   const [apiFailed, setAPIFailed] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
   const { locale = Language.en } = useRouter() || {};
   const { prayerTimeAPIFailed, locationFailed } = useContext(LangContext);
 
@@ -65,9 +66,13 @@ function Times({ modalTitleId, modalDescId, closeModal, isOpen }: TimesInterface
    * Get prayer times
    */
   async function getPrayerTimes() {
+    setIsFetching(true);
     const res = await getAPILocationInfo();
 
-    res ? handleLocationSuccess(res) : handleLocationFailure();
+    res ? await handleLocationSuccess(res) :await handleLocationFailure();
+
+    setIsFetching(false)
+
   }
 
   /**
@@ -120,7 +125,7 @@ function Times({ modalTitleId, modalDescId, closeModal, isOpen }: TimesInterface
   }
 
   const isFailed = locationAccessFailed || apiFailed;
-  const failureMsg = locationFailed || prayerTimeAPIFailed;
+  const failureMsg = locationAccessFailed ? locationFailed : apiFailed ? prayerTimeAPIFailed : '';
   const apiFailure = isFailed ? (
     <FailureMessage message={failureMsg} onRetry={getPrayerTimes} />
   ) : null;
@@ -144,7 +149,7 @@ function Times({ modalTitleId, modalDescId, closeModal, isOpen }: TimesInterface
           timezone={dates.timezone}
         />
         <hr />
-        <div id={modalDescId}>{modalBody}</div>
+        {isFetching? "Loading...":  <div id={modalDescId}>{modalBody}</div>}
       </div>
     </div>
   );
