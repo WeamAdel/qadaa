@@ -1,24 +1,24 @@
 export interface SuccessResponse {
-  success: boolean;
-  prayerTimes: {
-    fajr: string;
-    dhuhr: string;
-    asr: string;
-    maghrib: string;
-    isha: string;
-  };
-  timestamp: number;
-  timezone: string;
+	success: boolean;
+	prayerTimes: {
+		fajr: string;
+		dhuhr: string;
+		asr: string;
+		maghrib: string;
+		isha: string;
+	};
+	timestamp: number;
+	timezone: string;
 }
 
 export interface FailureResponse {
-  success: boolean;
-  message: string;
+	success: boolean;
+	message: string;
 }
 
 export type PrayerTimesResponse = SuccessResponse | FailureResponse;
 
-const apiEndPoint = "https://api.pray.zone/v2/times/today.json";
+const apiEndPoint = 'http://api.aladhan.com/v1/calendar';
 
 /**
  * Gets prayer times.
@@ -27,51 +27,69 @@ const apiEndPoint = "https://api.pray.zone/v2/times/today.json";
  * @link https://prayertimes.date/api/docs/today;
  */
 export async function getAPIPrayerTimes(
-  longitude: Number,
-  latitude: Number
+	longitude: Number,
+	latitude: Number
 ): Promise<PrayerTimesResponse> {
-  return await fetch(`${apiEndPoint}?longitude=${longitude}&latitude=${latitude}`)
-    .then((res: any = {}) => {
-      console.log(res);
-
-      if (res.status === 200) {
-        return res.json();
-      } else {
-        throw new Error("Failed to get prayer times with status " + res.status);
-      }
-    })
-    .then((res) => {
-      return extractResData(res);
-    })
-    .catch((e) => {
-      console.log(e);
-      return { success: false, message: e.message };
-    });
+	return await fetch(`${apiEndPoint}?longitude=${longitude}&latitude=${latitude}`)
+		.then((res: any = {}) => {
+			if (res.status === 200) {
+				return res.json();
+			} else {
+				throw new Error('Failed to get prayer times with status ' + res.status);
+			}
+		})
+		.then((res) => {
+			console.log(res);
+			return extractResData(res.data);
+		})
+		.catch((e) => {
+			console.log(e);
+			return { success: false, message: e.message };
+		});
 }
 
 /**
  * Extracts necessary data form the API response.
  *
- * @param res API success response.
+ * @param data API data
  */
-function extractResData(res: any = {}): SuccessResponse {
-  const {
-    results: { datetime, location },
-  } = res;
-  const { Fajr, Dhuhr, Asr, Maghrib, Isha } = datetime[0].times;
-  const { timestamp } = datetime[0].date;
-  const { timezone } = location;
+function extractResData(
+	data: [
+		{
+			timings: { [index: string]: string };
+			date: { timestamp: number };
+			meta: { timezone: string };
+		}
+	]
+): SuccessResponse {
+	const dayOfMonth = new Date().getDate() - 1;
+	const {
+		timings: { Fajr, Dhuhr, Asr, Maghrib, Isha },
+		date: { timestamp },
+		meta: { timezone },
+	} = data[dayOfMonth];
 
-  return {
-    success: true,
-    prayerTimes: {
-      fajr: Fajr,
-      dhuhr: Dhuhr,
-      asr: Asr,
-      maghrib: Maghrib,
-      isha: Isha,
-    },
-    timestamp,
-    timezone,
-  };
+	return {
+		success: true,
+		prayerTimes: {
+			fajr: removePrayerTimezone(Fajr),
+			dhuhr: removePrayerTimezone(Dhuhr),
+			asr: removePrayerTimezone(Asr),
+			maghrib: removePrayerTimezone(Maghrib),
+			isha: removePrayerTimezone(Isha),
+		},
+		timestamp: timestamp,
+		timezone,
+	};
+}
+
+/**
+ * Removes the extra timezone string from the prayer time.
+ *
+ * @example "05:15 (EET)" => "05:15"
+ * @param time Time of the prayer
+ */
+function removePrayerTimezone(time: string): string {
+	const result = time.match(/([0-9]+:[0-9]+)/);
+	return result ? result[0] : '';
 }
