@@ -39,7 +39,6 @@ export async function getAPIPrayerTimes(
 			}
 		})
 		.then((res) => {
-			console.log(res);
 			return extractResData(res.data);
 		})
 		.catch((e) => {

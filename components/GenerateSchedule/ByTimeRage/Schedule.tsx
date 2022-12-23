@@ -41,7 +41,6 @@ function Schedule({ dateRange, resetForm }: Schedule) {
     }
 
     function generateScheduleData() {
-      console.log(locale);
       if (!cancel) {
         setData(new TimeRangeSchedule(dateRange, locale as Language).generateData());
       }

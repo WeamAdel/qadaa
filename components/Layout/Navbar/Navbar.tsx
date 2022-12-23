@@ -22,8 +22,6 @@ function Navbar() {
   }
 
   function closeMenu() {
-    console.log("test");
-
     setIspanded(false);
   }
 

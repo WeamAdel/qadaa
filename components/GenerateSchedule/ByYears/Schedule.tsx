@@ -39,7 +39,6 @@ function Schedule({ years, resetForm }: Schedule) {
     }
 
     function generateScheduleData() {
-      console.log(locale);
       if (!cancel) {
         setData(new YearsCountSchedule(years, locale as Language).generateData());
       }
