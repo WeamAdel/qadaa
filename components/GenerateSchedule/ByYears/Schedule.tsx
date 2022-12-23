@@ -6,8 +6,8 @@ import "jspdf-autotable";
 import Table from "../PDFTable/Table";
 import GenerateModal from "../GenerateModal/GenerateModal";
 import AUTOTABLE_CONFIGS from "../autotable-configs";
-import { useRouter } from "next/router";
 import Language from "../../../types/Language";
+import useMyRouter from "../../../hooks/useMyRouter";
 
 interface Schedule {
   years: number;
@@ -19,7 +19,7 @@ function Schedule({ years, resetForm }: Schedule) {
   const [tables, setTables]: [Array<ReactNode> | null, any] = useState(null);
   const [data, setData]: [Array<ScheduleYearData> | null, any] = useState(null);
   const [isGenerated, setIsGenerated] = useState(false);
-  const { locale } = useRouter();
+  const { locale } = useMyRouter();
 
   useEffect(() => {
     if (!doc) {

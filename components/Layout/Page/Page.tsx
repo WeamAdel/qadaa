@@ -1,6 +1,6 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { useEffect } from "react";
+import useMyRouter from "../../../hooks/useMyRouter";
 import Language from "../../../types/Language";
 import Navbar from "../Navbar/Navbar";
 import PrayerTimes from "../PrayerTimes/PrayerTimes";
@@ -13,7 +13,7 @@ interface PageInterface {
 }
 
 function Page({ title, alias, children }: PageInterface) {
-  const { locale } = useRouter();
+  const { locale } = useMyRouter();
 
   useEffect(() => {
     setDocumentDirection(locale);

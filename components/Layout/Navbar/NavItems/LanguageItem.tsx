@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useContext } from "react";
+import useMyRouter from "../../../../hooks/useMyRouter";
 import { LangContext } from "../../../../Providers/Language";
 import Language from "../../../../types/Language";
 import Latern from "./Latern";
 
 function LinkItem() {
-  const { locale = Language.en, pathname } = useRouter();
+  const { locale, pathname } = useMyRouter();
   const { secondLang } = useContext(LangContext);
 
   return (

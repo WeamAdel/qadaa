@@ -1,12 +1,12 @@
-import { useRouter } from "next/router";
 import { createContext } from "react";
+import useMyRouter from "../hooks/useMyRouter";
 import { getLangTrans } from "../lang/lang";
 import Language from "../types/Language";
 
 export let LangContext = createContext(getLangTrans(Language.en));
 
 function Lang({ children }: { children: any }) {
-  const { locale } = useRouter();
+  const { locale } = useMyRouter();
   // @ts-ignore
   const langTrans = getLangTrans(locale ? locale : Languages.en);
 

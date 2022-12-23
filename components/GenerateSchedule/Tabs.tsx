@@ -10,15 +10,15 @@ import ByTimeRage from "./ByTimeRage/ByTimeRange";
 import ByCount from "./ByCount/ByCount";
 import { LangContext } from "../../Providers/Language";
 import { getPageURLHash } from "../../utils/utils";
-import { useRouter } from "next/router";
 import Route from "../../settings/routes";
 import "../../fonts/Amiri";
+import useMyRouter from "../../hooks/useMyRouter";
 
 function Tabs({ initTab = TabEnum.Years }: { initTab?: TabEnum }) {
   const [value, setValue]: [TabEnum, Function] = useState(initTab);
   const [hash, setHash]: [TabEnum | -1 | null, Function] = useState(null);
   const { years, timeRange, prayersCount } = useContext(LangContext);
-  const router = useRouter();
+  const router = useMyRouter();
 
   useEffect(() => {
     if (!hash && router) {

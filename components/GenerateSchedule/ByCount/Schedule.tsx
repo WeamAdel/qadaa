@@ -7,10 +7,10 @@ import "jspdf-autotable";
 
 import Table from "../PDFTable/Table";
 import GenerateModal from "../GenerateModal/GenerateModal";
-import { useRouter } from "next/router";
 import Language from "../../../types/Language";
 import AUTOTABLE_CONFIGS from "../autotable-configs";
 import { LangContext } from "../../../Providers/Language";
+import useMyRouter from "../../../hooks/useMyRouter";
 
 interface Schedule {
   prayersCount: PrayersCount;
@@ -25,7 +25,7 @@ function Schedule({ prayersCount, resetForm }: Schedule) {
   const [data, setData]: [Array<SchedulePrayerData> | null, any] = useState(null);
   const [isGenerated, setIsGenerated] = useState(false);
   const { prayers } = useContext(LangContext);
-  const { locale } = useRouter();
+  const { locale } = useMyRouter();
 
   useEffect(() => {
     if (!doc) {
