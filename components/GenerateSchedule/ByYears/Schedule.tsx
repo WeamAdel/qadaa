@@ -61,7 +61,7 @@ function Schedule({ years, resetForm }: Schedule) {
         for (let year of data) {
           for (let day of year.prayers) {
             const id = `y-${year.count}-d-${day.count}`;
-            tablesJSX.push(<Table key={id} id={id} prayers={day.prayers} title={day.title} />);
+            tablesJSX.push(<Table key={id} id={id} prayers={day.prayers} title={`${year.title} - ${day.title}`} />);
           }
         }
 
