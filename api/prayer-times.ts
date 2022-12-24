@@ -18,7 +18,7 @@ export interface FailureResponse {
 
 export type PrayerTimesResponse = SuccessResponse | FailureResponse;
 
-const apiEndPoint = 'http://api.aladhan.com/v1/calendar';
+const apiEndPoint = 'https://api.aladhan.com/v1/calendar';
 
 /**
  * Gets prayer times.
