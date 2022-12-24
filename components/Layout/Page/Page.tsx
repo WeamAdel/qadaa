@@ -23,6 +23,8 @@ function Page({ title, alias, children }: PageInterface) {
     <>
       <Head>
         <title>{title}</title>
+        <meta name="description" content="An app to create a schedule for your missed Muslim prayers." />
+        <meta name="keywords" content="muslim, prayers, salawat, qadaa, missed, schedule" />
       </Head>
       <div className={`page ${alias}`}>
         <BackgroundPattern />

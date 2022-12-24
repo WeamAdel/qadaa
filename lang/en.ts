@@ -1,6 +1,10 @@
 import Prayer from '../types/Prayer';
 
 const EN_TRANSLATION = {
+	meta: {
+		desc: 'أداة لإنشاء جدول لقضاء الصلوات الفائتة',
+		keywords: 'مسلم, صلوات, قضاء, الفائتة, جدول',
+	},
 	donate: 'donate',
 	donatePageTitle: "Qadaa' | Donate",
 	generateSchedule: 'generate schedule',
