@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import useMyRouter from '../../../../hooks/useMyRouter';
 import Latern from './Latern';
 
 interface LinkItemInterface {
@@ -22,7 +22,7 @@ function LinkItem({
 	target = '_self',
 }: LinkItemInterface) {
 	const laternJSX = withLatern ? <Latern /> : null;
-	const { locale } = useRouter();
+	const { locale } = useMyRouter();
 
 	return (
 		<li className={`navbar__nav-item ${classes}`}>

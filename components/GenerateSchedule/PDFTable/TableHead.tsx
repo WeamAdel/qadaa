@@ -1,12 +1,12 @@
-import { useRouter } from "next/router";
 import { ReactNode, useContext } from "react";
 import { LangContext } from "../../../Providers/Language";
 import Language from "../../../types/Language";
 import { v4 as uuidv4 } from "uuid";
+import useMyRouter from "../../../hooks/useMyRouter";
 
 function TableHead({ title }: { title?: string }) {
   const { prayer, number, done } = useContext(LangContext);
-  const { locale } = useRouter();
+  const { locale } = useMyRouter();
 
   const tableHeadJSX: ReactNode = [
     <td key="table-head-number">{number}</td>,

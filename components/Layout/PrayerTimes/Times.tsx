@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { ReactNode, useContext, useEffect, useState } from "react";
 import { LangContext } from "../../../Providers/Language";
 
@@ -11,9 +10,9 @@ import FailureMessage from "./FailureMessage";
 import { getAPIPrayerTimes, FailureResponse, SuccessResponse } from "../../../api/prayer-times";
 import { formatDate, formatHejriDate } from "../../../utils/utils";
 
-import Language from "../../../types/Language";
 import Prayer from "../../../types/Prayer";
 import { getAPILocationInfo, LocationSuccessResponse } from "../../../api/location";
+import useMyRouter from "../../../hooks/useMyRouter";
 
 interface TimesInterface {
   modalTitleId: string;
@@ -52,7 +51,7 @@ function Times({ modalTitleId, modalDescId, closeModal, isOpen }: TimesInterface
   const [locationAccessFailed, setLocationAccessFailed] = useState(false);
   const [apiFailed, setAPIFailed] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
-  const { locale = Language.en } = useRouter() || {};
+  const { locale  } = useMyRouter();
   const { prayerTimeAPIFailed, locationFailed } = useContext(LangContext);
 
   useEffect(() => {
@@ -99,7 +98,7 @@ function Times({ modalTitleId, modalDescId, closeModal, isOpen }: TimesInterface
   }
 
   function updatePrayerTimes({ prayerTimes, timestamp, timezone }: SuccessResponse) {
-    const hijriDate = formatHejriDate(timestamp, locale);
+    const hijriDate = formatHejriDate(timestamp, locale as string);
     const date = formatDate(timestamp);
 
     setPrayerTimes(prayerTimes);

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
+import useMyRouter from "../../hooks/useMyRouter";
 import ButtonCategory from "../../types/ButtonCategory";
 import Icon from "../Icon/Icon";
 
@@ -18,7 +18,7 @@ function LinkButton({
   category = ButtonCategory.Primary,
   classes = "",
 }: PrimaryIconLinkButtonInterface) {
-  const { locale } = useRouter();
+  const { locale } = useMyRouter();
   const iconJSX = children ? <Icon>{children}</Icon> : null;
 
   return (

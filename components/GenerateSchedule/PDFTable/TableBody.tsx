@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
 import { ReactNode } from "react";
+import useMyRouter from "../../../hooks/useMyRouter";
 import { SchedulePrayerData } from "../../../models/Schedule";
 import Language from "../../../types/Language";
 
@@ -8,7 +8,7 @@ export interface TableBody {
 }
 
 function TableBody({ rows }: TableBody) {
-  const { locale } = useRouter();
+  const { locale } = useMyRouter();
 
   const rowsJSX = rows.map((row) => {
     const tableBodyJSX: ReactNode = [
