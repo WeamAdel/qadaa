@@ -1,10 +1,8 @@
 import Prayer from '../types/Prayer';
 
 const AR_TRANSLATION = {
-	meta: {
-		desc: 'An app to create a schedule for your missed Muslim prayers.',
-		keywords: 'muslim, prayers, salawat, qadaa, missed, schedule',
-	},
+	metaDesc: 'أداة لإنشاء جدول لقضاء الصلوات الفائتة',
+	metaKeywords: 'مسلم, صلوات, قضاء, الفائتة, جدول',
 	donate: 'تبرّع',
 	donatePageTitle: 'قضاء | تبرّع',
 	generateSchedule: 'قم بإعداد جدول',
