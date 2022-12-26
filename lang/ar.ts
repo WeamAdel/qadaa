@@ -3,8 +3,7 @@ import Prayer from '../types/Prayer';
 const AR_TRANSLATION = {
 	metaDesc: 'أداة لإنشاء جدول لقضاء الصلوات الفائتة',
 	metaKeywords: 'مسلم, صلوات, قضاء, الفائتة, جدول',
-	donate: 'تبرّع',
-	donatePageTitle: 'قضاء | تبرّع',
+	donate: 'ادعمنا',
 	generateSchedule: 'قم بإعداد جدول',
 	home: 'الرئيسية',
 	homeDescription: 'الخطوات الصغيرة هي ما تحدث فرقا, الفرق الذي سيغير حياتك الحقيقية.',

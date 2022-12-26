@@ -4,7 +4,6 @@ const EN_TRANSLATION = {
 	metaDesc: 'An app to create a schedule for your missed Muslim prayers.',
 	metaKeywords: 'muslim, prayers, salawat, qadaa, missed, schedule',
 	donate: 'donate',
-	donatePageTitle: "Qadaa' | Donate",
 	generateSchedule: 'generate schedule',
 	home: 'home',
 	homeDescription:
